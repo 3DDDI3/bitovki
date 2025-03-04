@@ -1,0 +1,651 @@
+.uploader {
+    height: max-content;
+    position: relative;
+    width: 250px;
+    margin-top: 20px;
+    border-radius: 10px;
+    box-shadow: 4px 4px 30px rgba(0, 0, 0, .2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    gap: 5px;
+    background-color: rgba(0, 110, 255, 0.041);
+    flex-shrink: 0;
+
+    .uploader_demo {
+        max-height: 185px;
+        width: 100%;
+        display: none;
+        position: relative;
+    }
+
+    .uploader-actions {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        z-index: 10;
+        display: flex;
+        column-gap: 10px;
+    }
+
+    .uploader__save {
+        width: 30px;
+        cursor: pointer;
+    }
+
+    .uploader__exit {
+        width: 25px;
+        cursor: pointer;
+    }
+
+    svg.icon-delete {
+        display: none;
+    }
+
+    .uploader__header {
+        width: 100%;
+        border: 2px dashed royalblue;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        height: 185px;
+        position: relative;
+    }
+
+    .uploader__items {
+        display: flex;
+        flex-direction: column;
+        row-gap: 5px;
+        width: 100%;
+    }
+
+    .uploader__header svg {
+        height: 100px;
+    }
+
+    .uploader__header p {
+        text-align: center;
+        color: black;
+    }
+
+    .uploader__item {
+        background-color: rgba(0, 110, 255, 0.075);
+        width: 100%;
+        height: 40px;
+        padding: 8px;
+        border-radius: 10px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        color: black;
+        border: none;
+
+        svg {
+            flex-shrink: 0;
+        }
+
+        p {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+    }
+
+    .uploader__item_invisible {
+        display: none;
+    }
+
+    .uploader__item svg {
+        height: 130%;
+        fill: royalblue;
+        background-color: rgba(70, 66, 66, 0.103);
+        border-radius: 50%;
+        padding: 2px;
+        box-shadow: 0 2px 30px rgba(0, 0, 0, 0.205);
+    }
+
+    .uploader__item p {
+        flex: 1;
+        text-align: center;
+    }
+
+    .uploader__file {
+        display: none;
+    }
+}
+
+.uploader_hidden {
+    svg.icon {
+        display: none;
+    }
+
+    svg.icon-delete {
+        display: block;
+        cursor: pointer;
+        position: absolute;
+        height: auto;
+        top: 10px;
+        right: 10px;
+    }
+
+    p {
+        display: none;
+    }
+}
+
+.uploader__title {
+    margin: 1em 0;
+}
+
+.uploader__list {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 2em;
+
+    .uploader-list__item {
+        width: 150px;
+        height: 150px;
+        object-fit: cover;
+        position: relative;
+    }
+
+    svg {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        cursor: pointer;
+    }
+}
+
+.uploader-alt {
+    height: max-content;
+    position: relative;
+    width: 250px;
+    margin-top: 20px;
+    border-radius: 10px;
+    box-shadow: 4px 4px 30px rgba(0, 0, 0, .2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    gap: 5px;
+    background-color: rgba(0, 110, 255, 0.041);
+    flex-shrink: 0;
+
+    .uploader-alt_demo {
+        max-height: 185px;
+        width: 100%;
+        display: none;
+        position: relative;
+    }
+
+    .uploader-alt-actions {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        z-index: 10;
+        display: flex;
+        column-gap: 10px;
+    }
+
+    .uploader-alt__save {
+        width: 30px;
+        cursor: pointer;
+    }
+
+    .uploader-alt__exit {
+        width: 25px;
+        cursor: pointer;
+    }
+
+    svg.icon-delete {
+        display: none;
+    }
+
+    .uploader-alt__header {
+        width: 100%;
+        border: 2px dashed royalblue;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        height: 185px;
+        position: relative;
+    }
+
+    .uploader-alt__items {
+        display: flex;
+        flex-direction: column;
+        row-gap: 5px;
+        width: 100%;
+    }
+
+    .uploader-alt__header svg {
+        height: 100px;
+    }
+
+    .uploader-alt__header p {
+        text-align: center;
+        color: black;
+    }
+
+    .uploader-alt__item {
+        background-color: rgba(0, 110, 255, 0.075);
+        width: 100%;
+        height: 40px;
+        padding: 8px;
+        border-radius: 10px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        color: black;
+        border: none;
+
+        p {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+    }
+
+    .uploader-alt__item_invisible {
+        display: none;
+    }
+
+    .uploader-alt__item svg {
+        height: 130%;
+        fill: royalblue;
+        background-color: rgba(70, 66, 66, 0.103);
+        border-radius: 50%;
+        padding: 2px;
+        box-shadow: 0 2px 30px rgba(0, 0, 0, 0.205);
+    }
+
+    .uploader-alt__item p {
+        flex: 1;
+        text-align: center;
+    }
+
+    .uploader-alt__file {
+        cursor: pointer;
+        display: none;
+    }
+}
+
+.uploader-alt_hidden {
+    svg.icon {
+        display: none;
+    }
+
+    svg.icon-delete {
+        display: block;
+        cursor: pointer;
+        position: absolute;
+        height: auto;
+        top: 10px;
+        right: 10px;
+    }
+
+    p {
+        display: none;
+    }
+}
+
+.uploader-alt__title {
+    margin: 1em 0;
+}
+
+.uploader-alt__list {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 2em;
+
+    .uploader-alt-list__item {
+        width: 150px;
+        height: 150px;
+        object-fit: cover;
+        position: relative;
+    }
+
+    svg {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        cursor: pointer;
+    }
+}
+
+.accordion {
+    display: flex;
+    flex-direction: column;
+    row-gap: 2em;
+
+    .accordion__item {
+        position: relative;
+        display: flex;
+        border: 2px solid transparent;
+        column-gap: 20px;
+        justify-content: space-between;
+        align-items: center;
+
+        .accordion-item__delete {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+
+        .accordion__wrapper {
+            flex-grow: 1;
+
+            .accordion__block {
+                margin-top: 1em;
+            }
+        }
+
+        .accordion__header {
+            display: flex;
+            cursor: pointer;
+            justify-content: space-between;
+            align-items: center;
+
+            svg {
+                width: 20px;
+                height: 20px;
+                transition: transform .7s;
+                transform: rotate(180deg);
+            }
+        }
+    }
+
+    .accordion__item_active {
+        border: 2px dashed gray;
+        height: 100%;
+    }
+
+    .accordion__item:not(:last-child) {
+        border-bottom: 1px solid #E6E6E6;
+        padding-bottom: 2em;
+    }
+}
+
+.comment-block {
+    display: flex;
+    flex-direction: column;
+    column-gap: 20px;
+}
+
+.comment-wrapper {
+    display: flex;
+    column-gap: 50px;
+}
+
+.text-image-block {
+    display: flex;
+    column-gap: 20px;
+
+    svg {
+        align-self: center;
+        flex-shrink: 0;
+        cursor: pointer;
+    }
+}
+
+.description-block {
+    margin-top: 1em;
+}
+
+.list-button {
+    background-color: #5583FD;
+    width: 200px;
+    border-radius: 5px;
+    color: white;
+    font-size: .75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    cursor: pointer;
+    position: relative;
+
+    .list-button__header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 20px;
+
+        svg {
+            margin-bottom: 5px;
+        }
+    }
+
+    .list-button__list {
+        position: absolute;
+        display: none;
+        width: inherit;
+        border-radius: 5px;
+        margin-top: 5px;
+        flex-direction: column;
+        row-gap: 10px;
+
+        background-color: #5583FD;
+
+        .list__item {
+            padding: 10px 20px;
+            border-radius: 5px;
+        }
+
+        .list__item:hover {
+            background-color: #7699f8;
+        }
+    }
+}
+
+.list {
+    list-style: none;
+}
+
+.sorting-button {
+    padding: 10px !important;
+    position: fixed;
+    right: 50px;
+    top: 100px;
+    box-shadow: 3px 3px 3px #979797;
+}
+
+.people-block {
+    h3 {
+        margin-bottom: 1rem;
+    }
+
+    .chosen-container {
+        width: 400px !important;
+
+        .chosen-choices {
+            padding: 5px 15px;
+        }
+
+        .chosen-search-input {
+            font-size: 15px !important;
+            font-weight: 600;
+        }
+    }
+}
+
+.chosen-container-multi .chosen-choices li.search-choice {
+    margin: 0 5px 0 0 !important;
+    line-height: 20px !important;
+}
+
+.video-uploader {
+    height: max-content;
+    position: relative;
+    width: 250px;
+    margin-top: 20px;
+    border-radius: 10px;
+    box-shadow: 4px 4px 30px rgba(0, 0, 0, .2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    gap: 5px;
+    background-color: rgba(0, 110, 255, 0.041);
+    flex-shrink: 0;
+
+    .video-uploader_demo {
+        max-height: 185px;
+        width: 100%;
+        display: none;
+        position: relative;
+    }
+
+    .video-uploader-actions {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        z-index: 10;
+        display: flex;
+        column-gap: 10px;
+    }
+
+    .video-uploader__save {
+        width: 30px;
+        cursor: pointer;
+    }
+
+    .video-uploader__exit {
+        width: 25px;
+        cursor: pointer;
+    }
+
+    svg.icon-delete {
+        display: none;
+    }
+
+    .video-uploader__header {
+        width: 100%;
+        border: 2px dashed royalblue;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        height: 185px;
+        position: relative;
+    }
+
+    .video-uploader__items {
+        display: flex;
+        flex-direction: column;
+        row-gap: 5px;
+        width: 100%;
+    }
+
+    .video-uploader__header svg {
+        height: 100px;
+    }
+
+    .video-uploader__header p {
+        text-align: center;
+        color: black;
+    }
+
+    .video-uploader__item {
+        background-color: rgba(0, 110, 255, 0.075);
+        width: 100%;
+        height: 40px;
+        padding: 8px;
+        border-radius: 10px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        color: black;
+        border: none;
+
+        svg {
+            flex-shrink: 0;
+        }
+
+        p {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+    }
+
+    .video-uploader__item_invisible {
+        display: none;
+    }
+
+    .video-uploader__item svg {
+        height: 130%;
+        fill: royalblue;
+        background-color: rgba(70, 66, 66, 0.103);
+        border-radius: 50%;
+        padding: 2px;
+        box-shadow: 0 2px 30px rgba(0, 0, 0, 0.205);
+    }
+
+    .video-uploader__item p {
+        flex: 1;
+        text-align: center;
+    }
+
+    .video-uploader__file {
+        display: none;
+    }
+}
+
+.video-uploader_hidden {
+    svg.icon {
+        display: none;
+    }
+
+    svg.icon-delete {
+        display: block;
+        cursor: pointer;
+        position: absolute;
+        height: auto;
+        top: 10px;
+        right: 10px;
+    }
+
+    p {
+        display: none;
+    }
+}
+
+.video-uploader__title {
+    margin: 1em 0;
+}
+
+.video-uploader__list {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 2em;
+
+    .video-uploader-list__item {
+        width: 150px;
+        height: 150px;
+        object-fit: cover;
+        position: relative;
+    }
+
+    svg {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        cursor: pointer;
+    }
+}

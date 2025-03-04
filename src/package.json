@@ -1,0 +1,32 @@
+{
+    "private": true,
+    "scripts": {
+        "dev": "vite",
+        "build": "vite build"
+    },
+    "browserslist": [
+        "defaults",
+        "ie 11"
+    ],
+    "devDependencies": {
+        "@rollup/plugin-inject": "^5.0.5",
+        "copy-webpack-plugin": "",
+        "imagemin-mozjpeg": "^9.0.0",
+        "imagemin-webpack-plugin": "^2.4.2",
+        "laravel-mix-polyfill": "^3.0.0",
+        "laravel-mix-webp": "^0.1.1",
+        "laravel-vite-plugin": "^1.0.6",
+        "postcss": "^8.1.14",
+        "postcss-sort-media-queries": "^3.2.3",
+        "sass": "^1.32.5",
+        "sass-loader": "^10.1.1",
+        "svg-spritemap-webpack-plugin": "^3.8.3",
+        "vite": "^5.4.11"
+    },
+    "type": "module",
+    "dependencies": {
+        "inputmask": "^5.0.9",
+        "jquery": "^3.7.1",
+        "slick-carousel": "^1.8.1"
+    }
+}
