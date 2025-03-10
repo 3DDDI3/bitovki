@@ -1,38 +1,56 @@
 <x-Admin.NavBar title="Основное" url="main" all="{{ isset($all) && $all }}">
     @include('admin.includes.menu.item', [
         'route' => 'admin.main.pages.index',
-        'name' => 'страницы',
+        'name' => 'Страницы',
         'data' => 'pages',
     ])
 
     @include('admin.includes.menu.item', [
-        'route' => 'admin.main.news.index',
-        'name' => 'Новости',
-        'data' => 'news',
+        'route' => 'admin.main.catalog.index',
+        'name' => 'Каталог',
+        'data' => 'catalog',
     ])
 
     @include('admin.includes.menu.item', [
-        'route' => 'admin.main.medication.index',
-        'name' => 'Препараты',
-        'data' => 'medication',
+        'route' => 'admin.main.informations.index',
+        'name' => 'Покупка',
+        'data' => 'informations',
     ])
-</x-Admin.NavBar>
 
-<x-Admin.NavBar title="Вспомогательное" url="auxiliary" all="{{ isset($all) && $all }}">
     @include('admin.includes.menu.item', [
-        'route' => 'admin.auxiliary.staff.index',
-        'name' => 'Сотрудники',
-        'data' => 'staff',
+        'route' => 'admin.main.qa.index',
+        'name' => 'QA',
+        'data' => 'qa',
     ])
+
     @include('admin.includes.menu.item', [
-        'route' => 'admin.auxiliary.specialties.index',
-        'name' => 'Должности',
-        'data' => 'specialties',
+        'route' => 'admin.main.variants.index',
+        'name' => 'Варианты',
+        'data' => 'variants',
     ])
+
     @include('admin.includes.menu.item', [
-        'route' => 'admin.auxiliary.medication-types.index',
-        'name' => 'Типы препаратов',
-        'data' => 'medication-types',
+        'route' => 'admin.main.our-works.index',
+        'name' => 'Наши работы',
+        'data' => 'our-works',
+    ])
+
+    @include('admin.includes.menu.item', [
+        'route' => 'admin.main.reviews.index',
+        'name' => 'Отзывы',
+        'data' => 'reviews',
+    ])
+
+    @include('admin.includes.menu.item', [
+        'route' => 'admin.main.additional-options.index',
+        'name' => 'Дополнительные услуги',
+        'data' => 'additional-options',
+    ])
+
+    @include('admin.includes.menu.item', [
+        'route' => 'admin.main.infographics.index',
+        'name' => 'Инфографика',
+        'data' => 'infographics',
     ])
 </x-Admin.NavBar>
 

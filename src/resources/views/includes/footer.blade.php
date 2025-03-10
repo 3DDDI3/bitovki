@@ -8,14 +8,16 @@
                     <div class="company_text">Строительная компания</div>
                 </div>
             </div>
-            <div class="IP" style="text-decoration: none;">Индивидуальный предприниматель</br> ИНН 464575677565 <span
-                    class="span_footer">ОГРН 475879098080</span></div>
+            <div class="IP" style="text-decoration: none;">Индивидуальный предприниматель</br> ИНН
+                {{ $setting->inn }}<span class="span_footer">ОГРН {{ $setting->ogrn }}</span></div>
             <div class="footer_contacts">
                 <div class="phone">
                     <img src="{{ asset('images/whatsapp-color-svgrepo-com 1.png') }}" class="phone_img">
-                    <div class="phone_number_footer" style="text-decoration: none;">+7 (495) 120-02-53</div>
+                    <a href="tel:{{ preg_replace('/[\s\(\)\-]/', '', $setting->phone) }}" class="phone_number_footer"
+                        style="text-decoration: none;">{{ $setting->phone }}</a>
                 </div>
-                <div class="footer_email" style="text-decoration: none;">info@module.ru</div>
+                <a href="mailto:{{ $setting->email }}" class="footer_email"
+                    style="text-decoration: none;">{{ $setting->email }}</a>
             </div>
             <div class="footer_buttons">
                 <a href="#sixth" style="text-decoration: none;">
@@ -34,7 +36,8 @@
             <div class="footer_line"></div>
         </div>
         <div class="footer">
-            <div class="company_name">ООО "DB MODULE" 2025 ©</div>
+            <div class="company_name">ООО "DB MODULE" {{ \Carbon\Carbon::now()->format('Y') }} ©
+            </div>
             <div class="copyright">Все права защищены</div>
             <div class="politic">Политика конфиденциальности</div>
             <div class="VT">Разработка от<span class="orange"> VisualTeam</span></div>

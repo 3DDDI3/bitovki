@@ -3,6 +3,8 @@
 use App\Models\UserClass;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
@@ -29,6 +31,18 @@ return new class extends Migration
                 ->cascadeOnDelete();
             $table->timestamps();
         });
+
+        DB::table('users')->insert([
+            [
+                'name' => 'test',
+                'email' => 'test',
+                'password' => Hash::make('test'),
+                'is_admin' => 1,
+                'user_class_id' => UserClass::query()->find(1)->id,
+                'created_at' => now(),
+                'updated_at' => now()
+            ],
+        ]);
     }
 
     /**

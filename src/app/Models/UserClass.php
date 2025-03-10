@@ -10,6 +10,4 @@ class UserClass extends Model
     use HasFactory;
 
     protected $table = 'user_classes';
-
-    protected $fillable = [];
 }

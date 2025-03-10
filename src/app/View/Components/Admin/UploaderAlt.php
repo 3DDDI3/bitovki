@@ -14,12 +14,10 @@ class UploaderAlt extends Component
     public function __construct(
         public ?string $id = null,
         public bool $isHidden = false,
-        public ?string $blockTypeId = null,
         public ?string $blockId = null,
         public ?string $accept = null,
         public bool $isMultiple = false,
         public bool $isDeletable = false,
-        public ?string $pageId = null,
         public ?string $relationship = null,
         public bool $isSingle = false,
         public $object,

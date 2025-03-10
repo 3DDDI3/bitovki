@@ -15,7 +15,7 @@
     ])>
         <label for="{{ $id }}" class="uploader-alt__header" @style([
             'background-repeat: no-repeat' => !empty($object?->$path) && ($isDeletable && $isHidden),
-            "background-image: url(/public/{$object?->$path})" => !empty($object?->$path) && ($isDeletable && $isHidden),
+            "background-image: url(/media/{$object?->$path})" => !empty($object?->$path) && ($isDeletable && $isHidden),
             'background-size: contain' => !empty($object?->$path) && ($isDeletable && $isHidden),
             'background-position: center center' => !empty($object?->$path) && ($isDeletable && $isHidden),
             'border-color: transparent' => !empty($object?->$path) && ($isDeletable && $isHidden),
@@ -50,6 +50,7 @@
             </div>
         </div>
         @if ($isDeletable && $isHidden)
+            {{-- @dd($object) --}}
             <svg xmlns="http://www.w3.org/2000/svg" width="16" class="icon-delete" height="16" fill="red"
                 {{ !empty($object?->$pathName) ? "data-id={$object->id}" : '' }} class="bi bi-x-lg" viewBox="0 0 16 16">
                 <path

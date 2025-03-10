@@ -2,5 +2,5 @@
     @if (!empty($label))
         {{ $label }}
     @endif
-    <textarea name="{{ $name ?? '' }}" class="editor" id="editor_{{ $name ?? '' }}">{{ $value ?? '' }}</textarea>
+    <textarea name="{{ $name ?? '' }}" class="{{ $class ?? 'editor' }}" id="editor_{{ $name ?? '' }}">{{ $value ?? '' }}</textarea>
 </div>

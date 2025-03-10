@@ -1,20 +1,23 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminAjax;
-use App\Http\Controllers\Admin\Auxiliary\PersonController;
-use App\Http\Controllers\Admin\Auxiliary\SpecialtyController;
 use App\Http\Controllers\Admin\LoginController as AdminLoginController;
+use App\Http\Controllers\Admin\Main\AdditionalOptionController;
+use App\Http\Controllers\Admin\Main\CatalogController;
+use App\Http\Controllers\Admin\Main\InfographicController;
+use App\Http\Controllers\Admin\Main\InformationController;
+use App\Http\Controllers\Admin\Main\OurWorkController;
+use App\Http\Controllers\Admin\Main\PageController;
+use App\Http\Controllers\Admin\Main\QAController;
+use App\Http\Controllers\Admin\Main\ReviewController;
+use App\Http\Controllers\Admin\Main\VariantController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\SettingsController;
 use App\Http\Controllers\Admin\Users\UsersController;
 use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\Auxiliary\MedicationTypeController;
 use App\Http\Controllers\Feedback\CompanyController;
 use App\Http\Controllers\Feedback\ContactController;
 use App\Http\Controllers\Feedback\PharmacovigilanceController;
-use App\Http\Controllers\Main\MedicationController;
-use App\Http\Controllers\Main\NewsController;
-use App\Http\Controllers\Main\PageController;
 use App\Http\Middleware\VerifyCsrfToken;
 use Illuminate\Http\Request;
 
@@ -52,43 +55,60 @@ Route::prefix('admin')
                         Route::match(['get', 'post'], '/edit{id?}', [PageController::class, 'edit'])->name('edit');
                     });
 
-                Route::prefix('news')
-                    ->name('news.')
+                Route::prefix('qa')
+                    ->name('qa.')
                     ->group(function () {
-                        Route::get('/', [NewsController::class, 'index'])->name('index');
-                        Route::match(['get', 'post'], '/edit{id?}', [NewsController::class, 'edit'])->name('edit');
+                        Route::get('/', [QAController::class, 'index'])->name('index');
+                        Route::match(['get', 'post'], '/edit{id?}', [QAController::class, 'edit'])->name('edit');
                     });
 
-                Route::prefix('medication')
-                    ->name('medication.')
+                Route::prefix('our-works')
+                    ->name('our-works.')
                     ->group(function () {
-                        Route::get('/', [MedicationController::class, 'index'])->name('index');
-                        Route::match(['get', 'post'], '/edit{id?}', [MedicationController::class, 'edit'])->name('edit');
-                    });
-            });
-
-        Route::prefix('auxiliary')
-            ->name('auxiliary.')
-            ->group(function () {
-                Route::prefix('staff')
-                    ->name('staff.')
-                    ->group(function () {
-                        Route::get('/', [PersonController::class, 'index'])->name('index');
-                        Route::match(['get', 'post'], '/edit{id?}', [PersonController::class, 'edit'])->name('edit');
+                        Route::get('/', [OurWorkController::class, 'index'])->name('index');
+                        Route::match(['get', 'post'], '/edit{id?}', [OurWorkController::class, 'edit'])->name('edit');
                     });
 
-                Route::prefix('specialties')
-                    ->name('specialties.')
+                Route::prefix('variants')
+                    ->name('variants.')
                     ->group(function () {
-                        Route::get('/', [SpecialtyController::class, 'index'])->name('index');
-                        Route::match(['get', 'post'], '/edit{id?}', [SpecialtyController::class, 'edit'])->name('edit');
+                        Route::get('/', [VariantController::class, 'index'])->name('index');
+                        Route::match(['get', 'post'], '/edit{id?}', [VariantController::class, 'edit'])->name('edit');
                     });
 
-                Route::prefix('medication-types')
-                    ->name('medication-types.')
+                Route::prefix('reviews')
+                    ->name('reviews.')
                     ->group(function () {
-                        Route::get('/', [MedicationTypeController::class, 'index'])->name('index');
-                        Route::match(['get', 'post'], '/edit{id?}', [MedicationTypeController::class, 'edit'])->name('edit');
+                        Route::get('/', [ReviewController::class, 'index'])->name('index');
+                        Route::match(['get', 'post'], '/edit{id?}', [ReviewController::class, 'edit'])->name('edit');
+                    });
+
+                Route::prefix('informations')
+                    ->name('informations.')
+                    ->group(function () {
+                        Route::get('/', [InformationController::class, 'index'])->name('index');
+                        Route::match(['get', 'post'], '/edit{id?}', [InformationController::class, 'edit'])->name('edit');
+                    });
+
+                Route::prefix('catalog')
+                    ->name('catalog.')
+                    ->group(function () {
+                        Route::get('/', [CatalogController::class, 'index'])->name('index');
+                        Route::match(['get', 'post'], '/edit{id?}', [CatalogController::class, 'edit'])->name('edit');
+                    });
+
+                Route::prefix('additional-options')
+                    ->name('additional-options.')
+                    ->group(function () {
+                        Route::get('/', [AdditionalOptionController::class, 'index'])->name('index');
+                        Route::match(['get', 'post'], '/edit{id?}', [AdditionalOptionController::class, 'edit'])->name('edit');
+                    });
+
+                Route::prefix('infographics')
+                    ->name('infographics.')
+                    ->group(function () {
+                        Route::get('/', [InfographicController::class, 'index'])->name('index');
+                        Route::match(['get', 'post'], '/edit{id?}', [InfographicController::class, 'edit'])->name('edit');
                     });
             });
 

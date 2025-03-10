@@ -5,11 +5,7 @@ use App\Http\Controllers\Admin\Api\ImageController;
 use App\Http\Controllers\Admin\Api\PersonalController;
 use App\Http\Controllers\Admin\Api\SocialNetworkController;
 use App\Http\Controllers\Api\RequestController;
-use App\Http\Controllers\Feedback\ExportFeedbackController;
-use App\Http\Controllers\Main\MedicationController;
-use App\Http\Controllers\Main\NewsController;
 use App\Http\Controllers\MainPageController;
-use App\Http\Controllers\SearchController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -57,24 +53,6 @@ Route::withoutMiddleware('api')
         Route::post('/contact', 'contact');
     });
 
-Route::prefix('medications')
-    ->group(function () {
-        Route::get('/getMore', [MedicationController::class, 'getMore']);
-    });
-
-Route::prefix('news')->group(function () {
-    Route::get('getMore', [NewsController::class, 'getMore']);
-});
-
-Route::prefix('search')->group(function () {
-    Route::get('getMore', [SearchController::class, 'getMore']);
-});
-
-Route::prefix('researches')->group(function () {
-    Route::post('/create', [MedicationController::class, 'researchCreate']);
-    Route::delete('/delete', [MedicationController::class, 'researchDelete']);
-});
-
 Route::prefix('main-list')->group(function () {
     Route::post('/create', [MainPageController::class, 'create']);
     Route::delete('/delete', [MainPageController::class, 'delete']);
@@ -92,11 +70,4 @@ Route::prefix('social-network')
     ->group(function () {
         Route::post('', 'create');
         Route::delete('', 'delete');
-    });
-
-Route::prefix('feedbacks/export')
-    ->group(function () {
-        Route::get('/company', [ExportFeedbackController::class, 'exportCompany']);
-        Route::get('/contact', [ExportFeedbackController::class, 'exportContact']);
-        Route::get('/pharmacovigilance', [ExportFeedbackController::class, 'exportPharmacovigilanceController']);
     });

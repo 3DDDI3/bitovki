@@ -17,16 +17,11 @@ return new class extends Migration
         Schema::create('settings', function (Blueprint $table) {
             $table->id();
             $table->text('address');
-            $table->string('phones', 255)->nullable();
+            $table->string('phone', 255)->nullable();
             $table->text('description')->nullable();
-            $table->text('requisites')->nullable();
-            $table->foreignIdFor(File::class)
-                ->comment('Реквизиты в формате файла')
-                ->nullable()
-                ->constrained()
-                ->cascadeOnDelete()
-                ->cascadeOnUpdate();
             $table->string('email')->nullable();
+            $table->string('ogrn')->nullable();
+            $table->string('inn')->nullable();
             $table->string('vk')->nullable();
             $table->string('youtube')->nullable();
             $table->string('telegram')->nullable();
@@ -41,9 +36,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('settings', function (Blueprint $table) {
-            $table->dropForeignIdFor(File::class);
-        });
         Schema::dropIfExists('settings');
     }
 };

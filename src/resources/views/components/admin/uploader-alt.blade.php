@@ -109,7 +109,7 @@
                                     <path d="M18.153 6h-.009v5.342H23.5v-.002z"></path>
                                 </g>
                             </svg>
-                            <p>{{ $file->name }}</p>
+                            <p>{{ $file->image_name }}</p>
                             <svg data-block-file-id="{{ $file->id }}" viewBox="0 0 24 24" class="delete"
                                 fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
@@ -136,7 +136,7 @@
                                 <path d="M18.153 6h-.009v5.342H23.5v-.002z"></path>
                             </g>
                         </svg>
-                        <p>{{ $object->$relationship->name }}</p>
+                        <p>{{ $object->$relationship->image_name }}</p>
                         <svg data-block-file-id="{{ $object->$relationship->id }}" viewBox="0 0 24 24" class="delete"
                             fill="none" xmlns="http://www.w3.org/2000/svg">
                             <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
@@ -161,8 +161,6 @@
         {{ !empty($blockId) ? "data-block-id=$blockId" : '' }}
         {{ !empty($blockTypeId) ? "data-block-type-id=$blockTypeId" : '' }} {{ $isMultiple ? 'multiple' : '' }}
         {{ $width > 0 ? "data-width=$width" : null }} {{ $height > 0 ? "data-height=$height" : null }}
-        {{ !empty($accept) ? "accept=$accept" : '' }}
-        {{ $isSingle && !empty($object) && !empty($object->$relationship) && $object->$relationship->count() > 0 ? 'disabled' : '' }}
-        class="uploader__file" type="file">
+        {{ !empty($accept) ? "accept=$accept" : '' }} class="uploader__file" type="file">
 
 </div>

@@ -1,3 +1,5 @@
+// import DOMPurify from 'dompurify';
+
 $(document).ready(function () {
     $('.editor').summernote({
         height: 300, // Adjust height as needed
@@ -19,8 +21,13 @@ $(document).ready(function () {
             ['color', ['color']],
             ['para', ['ul', 'ol', 'paragraph']],
             ['insert', ['picture', 'link', 'video', 'table']],
-            ['misc', ['fullscreen', 'codeview', 'undo', 'redo', 'help']],
-            ['customGroup', ['customButton']]
+            ['misc', ['fullscreen', 'codeview', 'undo', 'redo', 'help']]
+        ],
+        colors: [
+            ['#FE8934', '#ffffff', '#000000'],
+        ],
+        colorsName: [
+            ['Orange', 'White', 'Black'],
         ],
         styleTags: [
             { title: 'Заголовок 1', tag: 'h1', className: 'progect__title', value: 'h1' },
@@ -30,64 +37,129 @@ $(document).ready(function () {
             { title: 'Текст', tag: 'p', className: 'item-text', value: 'p' },
             { title: 'Текст_альт', tag: 'p', className: 'supervision__desc', value: 'p' },
         ],
-        buttons: {
-            customButton: function (editor) {
-                let blocks = [
-                    'description',
-                    'text_image',
-                    'comment',
-                ];
-                let blocks_alt = [
-                    'indications',
-                    'instraction_short_descripion',
-                ]
+        callbacks: {
+            onPaste: function (e) {
+                var bufferHTML = (e.originalEvent || e).clipboardData.getData('text/html');
 
-                let name = $(editor.$note[0]).attr("name").replace(/_\d+$/, "");
+                var cleanHTML = DOMPurify.sanitize(bufferHTML, {
+                    ALLOWED_TAGS: ['p', 'b', 'i', 'u', 'a', 'ul', 'ol', 'li'], // Разрешенные теги
+                    ALLOWED_ATTR: ['href', 'target'] // Разрешенные атрибуты
+                });
 
-                if (blocks_alt.includes(name)) {
-                    return $.summernote.ui.button({
-                        contents: '<i class="note-icon-trash"></i>',
-                        tooltip: 'Убрать внешние стили',
-                        click: function (button) {
+                // var tempDiv = document.createElement('div');
+                // tempDiv.innerHTML = cleanHTML;
 
-                            let clearText = $(button.currentTarget).parents(".input_block").find(".editor").summernote("code").replaceAll(/(\s?style="[^"]*")|(\s?class="[^"]*")/g, "");
+                // tempDiv.querySelectorAll('ul').forEach(function (ul) {
+                //     ul.classList.add('custom-ul');
+                // });
+                // tempDiv.querySelectorAll('li').forEach(function (li) {
+                //     li.classList.add('custom-li');
+                // });
 
-                            clearText = clearText.replaceAll(/\<ul\>/g, "<ul class='farm-service_alt__items'>");
-                            clearText = clearText.replaceAll(/\<li\>/g, "<li class='farm-service_alt__item item-text'>");
+                // var updatedHTML = tempDiv.innerHTML;
 
-                            $(button.currentTarget).parents(".input_block").find(".editor").summernote('code', '');
-                            $(button.currentTarget).parents(".input_block").find(".editor").summernote('pasteHTML', clearText);
-                        }
-                    }).render();
-                }
+                let updatedHTML = cleanHTML;
 
-                if (blocks.includes(name))
-                    return $.summernote.ui.button({
-                        contents: '<i class="note-icon-trash"></i>',
-                        tooltip: 'Убрать внешние стили',
-                        click: function (button) {
+                e.preventDefault();
+                document.execCommand('insertHTML', false, updatedHTML);
+            },
+            onChange: function (contents, $editable) {
+                // $editable.find('ul').not('.custom-ul').each(function () {
+                //     $(this).addClass('custom-ul'); // Добавляем класс для <ul>
+                //     $(this).find('li').addClass('custom-li'); // Добавляем класс для <li>
+                // });
+            }
+        }
+    });
 
-                            let clearText = $(button.currentTarget).parents(".input_block").find(".editor").summernote("code").replaceAll(/(\s?style="[^"]*")|(\s?class="[^"]*")/g, "");
 
-                            clearText = clearText.replaceAll(/\<ul\>/g, "<ul class='farm-service__items'>");
-                            clearText = clearText.replaceAll(/\<li\>/g, "<li class='farm-service__item item-text'>");
+    $.upload = function (file, editor) {
 
-                            $(button.currentTarget).parents(".input_block").find(".editor").summernote('code', '');
-                            $(button.currentTarget).parents(".input_block").find(".editor").summernote('pasteHTML', clearText);
-                        }
-                    }).render();
-                else
-                    return $.summernote.ui.button({
-                        contents: '<i class="note-icon-trash"></i>',
-                        tooltip: 'Убрать внешние стили',
-                        click: function (button) {
+        let formData = new FormData();
+        formData.append('action', 'imgUpload');
+        formData.append('file', file);
 
-                            let clearText = $(button.currentTarget).parents(".input_block").find(".editor").summernote("code").replaceAll(/(\s?style="[^"]*")|(\s?class="[^"]*")/g, "");
+        $.ajax({
+            method: 'POST',
+            url: '/admin/ajax',
+            contentType: false,
+            cache: false,
+            processData: false,
+            data: formData,
+            success: function (src) {
+                editor.summernote('insertImage', src);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                console.error(textStatus + ' ' + errorThrown);
+            }
+        });
+    };
 
-                            $(button.currentTarget).parents(".input_block").find(".editor").summernote('code', '');
-                            $(button.currentTarget).parents(".input_block").find(".editor").summernote('pasteHTML', clearText);
-                        }
-                    }).render();
+    $('.variant_editor').summernote({
+        height: 300, // Adjust height as needed
+        lang: 'ru-RU', // Language setting
+        fontNames: [
+            'Geologica',
+            'Arial',
+            'Arial Black',
+            'Comic Sans MS',
+            'Courier New',
+        ],
+        fontSizes: ['8', '9', '10', '11', '12', '13', '14', '15', '16', '18', '20', '22', '24', '28', '32', '36', '40', '48'],
+        toolbar: [
+            ['style'],
+            ['style', ['bold', 'italic', 'underline', 'clear']],
+            ['font', ['strikethrough']],
+            ['fontsize', ['fontsize']],
+            ['fontname', ['fontname']],
+            ['color', ['color']],
+            ['para', ['ul', 'ol', 'paragraph']],
+            ['insert', ['picture', 'link', 'video', 'table']],
+            ['misc', ['fullscreen', 'codeview', 'undo', 'redo', 'help']]
+        ],
+        colors: [
+            ['#FE8934', '#ffffff', '#000000'],
+        ],
+        colorsName: [
+            ['Orange', 'White', 'Black'],
+        ],
+        styleTags: [
+            { title: 'Заголовок 3', tag: 'h3', className: 'seven_block_option_title', value: 'h3' },
+            { title: 'Заголовок 4', tag: 'h4', className: 'seven_block_option_description', value: 'h4' },
+            { title: 'Текст', tag: 'p', className: 'seven_block_option_text', value: 'p' },
+            { title: 'Текст_жирный', tag: 'p', className: 'seven_block_option_text_bold', value: 'p' },
+        ],
+        callbacks: {
+            onPaste: function (e) {
+                var bufferHTML = (e.originalEvent || e).clipboardData.getData('text/html');
+
+                var cleanHTML = DOMPurify.sanitize(bufferHTML, {
+                    ALLOWED_TAGS: ['p', 'b', 'i', 'u', 'a', 'ul', 'ol', 'li'], // Разрешенные теги
+                    ALLOWED_ATTR: ['href', 'target'] // Разрешенные атрибуты
+                });
+
+                // var tempDiv = document.createElement('div');
+                // tempDiv.innerHTML = cleanHTML;
+
+                // tempDiv.querySelectorAll('ul').forEach(function (ul) {
+                //     ul.classList.add('custom-ul');
+                // });
+                // tempDiv.querySelectorAll('li').forEach(function (li) {
+                //     li.classList.add('custom-li');
+                // });
+
+                // var updatedHTML = tempDiv.innerHTML;
+
+                let updatedHTML = cleanHTML;
+
+                e.preventDefault();
+                document.execCommand('insertHTML', false, updatedHTML);
+            },
+            onChange: function (contents, $editable) {
+                // $editable.find('ul').not('.custom-ul').each(function () {
+                //     $(this).addClass('custom-ul'); // Добавляем класс для <ul>
+                //     $(this).find('li').addClass('custom-li'); // Добавляем класс для <li>
+                // });
             }
         }
     });

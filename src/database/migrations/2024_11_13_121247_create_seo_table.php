@@ -15,19 +15,19 @@ return new class extends Migration
     {
         Schema::create('seo', function (Blueprint $table) {
             $table->id();
-            $table->string('url', 255);
-            $table->string('title', 255);
-            $table->string('description', 255);
-            $table->string('canonical', 255);
-            $table->string('keywords', 255);
-            $table->string('og_title', 255);
-            $table->string('og_description', 255);
-            $table->string('og_url', 255);
-            $table->string('twitter_title', 255);
-            $table->string('twitter_site', 255);
-            $table->string('jsonld_title', 255);
-            $table->string('jsonld_description', 255);
-            $table->string('jsonld_type', 255);
+            $table->text('url');
+            $table->text('title');
+            $table->text('description');
+            $table->text('canonical');
+            $table->text('keywords');
+            $table->text('og_title');
+            $table->text('og_description');
+            $table->text('og_url');
+            $table->text('twitter_title');
+            $table->text('twitter_site');
+            $table->text('jsonld_title');
+            $table->text('jsonld_description');
+            $table->text('jsonld_type');
             $table->timestamps();
         });
     }

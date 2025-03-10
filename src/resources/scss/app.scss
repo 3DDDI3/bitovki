@@ -342,7 +342,7 @@ header {
 .right_block_img {
     width: 995px;
     height: 850px;
-    background: url("/public/images/d8ec6eee2a1a6657bba5f7997a2dc1e7.png");
+    // background: url("/public/images/d8ec6eee2a1a6657bba5f7997a2dc1e7.png");
     background-position: top left -600px;
     background-size: cover;
     background-repeat: no-repeat;
@@ -408,6 +408,32 @@ header {
     margin-top: 80px;
     display: flex;
     margin-bottom: 100px;
+    ul {
+        margin: unset;
+        padding: unset;
+
+        li {
+            list-style-type: none;
+            padding-left: 30px;
+            position: relative;
+            font-family: "Lato";
+            font-weight: 400;
+            font-size: 20px;
+            line-height: 26.2px;
+            letter-spacing: 0%;
+            margin-bottom: 30px;
+        }
+
+        li::after {
+            background-color: rgb(254, 137, 52);
+            content: "";
+            height: 10px;
+            width: 10px;
+            left: 0;
+            position: absolute;
+            top: 8px;
+        }
+    }
 }
 .first_block_main_text {
     margin-top: 170px;
@@ -522,7 +548,7 @@ header {
 .slider_img {
     max-height: 500px;
     width: 850px;
-    object-position: -70px;
+    // object-position: -70px;
 }
 .content .slick-arrow {
     position: absolute;
@@ -2877,5 +2903,17 @@ body:has(dialog[open]) {
     }
     .zayavka_title {
         width: 85%;
+    }
+}
+
+@media (min-width: 1330px) and (max-width: 1400px) {
+    .slick-prev {
+        left: 89% !important;
+    }
+}
+
+@media (min-width: 1024px) and (max-width: 1329px) {
+    .slick-prev {
+        left: 87% !important;
     }
 }

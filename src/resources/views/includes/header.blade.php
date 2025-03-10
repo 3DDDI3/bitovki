@@ -10,8 +10,9 @@
             </div>
             <!-- <div class="casual_menu"> -->
             <img class="contact_img" src="{{ asset('images/whatsapp-color-svgrepo-com 1.png') }}">
-            <div class="phone_number" style="text-decoration: none;">+7 (495) 120-02-53</div>
-            <div class="email" style="text-decoration: none;">info@module.ru</div>
+            <a class="phone_number" href="tel:{{ preg_replace('/[\s\(\)\-]/', '', $setting->phone) }}"
+                style="text-decoration: none;">{{ $setting->phone }}</a>
+            <div class="email" style="text-decoration: none;">{{ $page->email }}</div>
             <a href="#" style="text-decoration: none;">
                 <div class="header_button">Оставить заявку на консультацию</div>
             </a>
@@ -45,14 +46,18 @@
                         href="#eight">Часто задаваемые вопросы</a></li>
                 <div class="burger_contacts">
                     <div class="burger_contacts_content">
-                        <div class="burger_contacts_row"><img src="{{ asset('images/Group2.png') }}"
-                                style="width: 18px;height: 18px;" class="burger_contacts_img">
-                            <div class="burger_contacts_text">+7 (495) 146-84-84</div>
+                        <div class="burger_contacts_row">
+                            <img src="{{ asset('images/Group2.png') }}" style="width: 18px;height: 18px;"
+                                class="burger_contacts_img">
+                            <a href="tel:{{ preg_replace('/[\s\(\)\-]/', '', $setting->phone) }}"
+                                class="burger_contacts_text">{{ $setting->phone }}
+                            </a>
                         </div>
-                        <div class="burger_contacts_row"><img
-                                src="{{ asset('images/whatsapp-color-svgrepo-com 1.png') }}"
+                        <div class="burger_contacts_row">
+                            <img src="{{ asset('images/whatsapp-color-svgrepo-com 1.png') }}"
                                 style="width: 22;height: 22px;" class="burger_contacts_img">
-                            <div class="burger_contacts_text">+7 (495) 146-84-84</div>
+                            <a href="tel:{{ preg_replace('/[\s\(\)\-]/', '', $setting->phone) }}"
+                                class="burger_contacts_text">{{ $setting->phone }}</a>
                         </div>
                         <div class="burger_contacts_row"><img src="{{ asset('images/Group 6.png') }}"
                                 style="width: 20px;height: 14px;" class="burger_contacts_img">
@@ -60,7 +65,7 @@
                         </div>
                         <div class="burger_contacts_row"><img src="{{ asset('images/address.png') }}"
                                 style="width: 14px;height: 20px;" class="burger_contacts_img">
-                            <div class="burger_contacts_text">г. Москва, Хлебозаводский</br> проезд д. 7, стр. 9</div>
+                            <div class="burger_contacts_text">{{ $setting->address }}</div>
                         </div>
                         <div class="burger_contacts_description">Если хотите приехать - договаривайтесь с бригадиром о
                             встрече, потому что бригады часто работают на выезде и цех бывает закрыт (номер бригадира
@@ -78,14 +83,15 @@
                 </div>
             </ul>
             <div class="left_block">
-                <div class="main_text">хозблок</div>
-                <div class="under_text">со стеллажами «под ключ» от 10 дней с доставкой</div>
-                <div class="price_text">со скидкой</div>
-                <div class="price_form">35 000 <img src="{{ asset('images/ruble.svg') }}" class="ruble">
+                <div class="main_text">{{ $page->block_1_title }}</div>
+                <div class="under_text">{{ $page->block_1_subtitle }}</div>
+                <div class="price_text">{{ $page->block_1_price_title }}</div>
+                <div class="price_form">{{ number_format($page->block_1_price_value, 0, '', ' ') }} <img
+                        src="{{ asset('images/ruble.svg') }}" class="ruble">
                 </div>
                 <div class="under_price">
                     <div class="star">*</div>
-                    <div class="right_star">до 30 января 2025г.</div>
+                    <div class="right_star">{{ $page->block_1_price_subtitle }}</div>
                 </div>
                 <form>
                     <div class="form">
@@ -101,25 +107,16 @@
                 </form>
             </div>
             <div class="right_block">
-                <div class="right_block_img"></div>
+                <div class="right_block_img" @style(["background-image: url(/media/$page->block_1_image_path)"])></div>
                 <div class="advantages">
                     <div class="advantages_elements">
-                        <div class="advantages_element" style="width: 162px;">
-                            <img src="{{ asset('images/Group.png') }}" class="advantages_element_img">
-                            <div class="advantages_element_text">Выгодная цена - от 18 800руб. за кв.м!</div>
-                        </div>
-                        <div class="advantages_element" style="width: 132px;">
-                            <img src="{{ asset('images/fi_5311124.png') }}" class="advantages_element_img">
-                            <div class="advantages_element_text">Подберём с Вами цвета хозблока</div>
-                        </div>
-                        <div class="advantages_element" style="width: 91px;">
-                            <img src="{{ asset('images/fi_3188047.png') }}" class="advantages_element_img">
-                            <div class="advantages_element_text">Работаем по договору</div>
-                        </div>
-                        <div class="advantages_element" style="width: 193px;">
-                            <img src="{{ asset('images/icon 2.png') }}" class="advantages_element_img">
-                            <div class="advantages_element_text">Возможна сборка хозблока у Вас на участке</div>
-                        </div>
+                        @foreach ($infographics as $infographic)
+                            <div class="advantages_element">
+                                <img src="{{ asset('media/' . $infographic->image_path) }}"
+                                    class="advantages_element_img">
+                                <div class="advantages_element_text">{{ $infographic->title }}</div>
+                            </div>
+                        @endforeach
                     </div>
                 </div>
             </div>

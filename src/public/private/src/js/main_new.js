@@ -354,8 +354,9 @@ $(function () {
         if ($(this).data("block-type-id") != undefined)
             formData.append('block_type_id', $(this).data("block-type-id"));
 
-        if ($(this).data("page-id") == undefined || $(this).data("block-type-id") == undefined)
+        if ($("input[name='object_id']").val() == '')
             formData.append('id', $(this).attr("id").replace(/_\d+$/, ""));
+        else formData.append('id', $("input[name='object_id']").val());
 
         if ($(this).data("block-id") != undefined)
             formData.append("block_id", $(this).data("block-id"));
@@ -397,7 +398,7 @@ $(function () {
 
         $.ajax({
             type: "POST",
-            url: "/api/blocks",
+            url: "/api/images",
             cache: false,
             context: this,
             contentType: false,
@@ -408,139 +409,17 @@ $(function () {
 
                 let newBlock = null;
 
-                switch ($(this).attr("id").replace(/_\d+$/, "")) {
-                    case "files":
-                        if ($(this).data("block_id") == undefined) {
-                            $(this).attr("data-block-id", response.blocks[0].block_id);
-                            $(this).parents(".accorion__item").attr("data-block-id", response.blocks[0].block_id);
-                        }
-
-                        newBlock = $($(this).parents(".uploader").find(".uploader__item")[0]).clone();
-                        Array.from(response.blocks).forEach(el => {
+                switch ($(this).attr("data-block-id").replace(/_\d+$/, "")) {
+                    case "item_images":
+                        $("input[name='object_id']").val(response.images[0].object_id);
+                        Array.from(response.images).forEach(el => {
+                            newBlock = $($(this).parents(".uploader").find(".uploader__item")[0]).clone();
                             $(newBlock).find(".delete").attr("data-block-file-id", el.id);
-                            $(newBlock).find(".delete").attr("data-block-type-id", el.block_type_id);
-                            $(newBlock).find("p").text(el.name);
-                            $(newBlock).removeClass("uploader__item_invisible");
-                            $(this).parents(".uploader").find(".uploader__items").append(newBlock);
-
-                        });
-                        break;
-
-                    case "medication-file":
-
-                        newBlock = $($(this).parents(".uploader").find(".uploader__item")[0]).clone();
-                        Array.from(response.blocks).forEach(el => {
-                            $(newBlock).find(".delete").attr("data-block-file-id", el.id);
-                            $(newBlock).find(".delete").attr("data-block-type-id", el.block_type_id);
+                            $(newBlock).find(".delete").attr("data-block-type-id", el.object_id);
                             $(newBlock).find("p").text(el.name);
                             $(newBlock).removeClass("uploader__item_invisible");
                             $(this).parents(".uploader").find(".uploader__items").append(newBlock);
                         });
-
-                        $("input[name='object_id']").val(response.blocks[0].object_id);
-                        $(this).attr("data-block-id", response.blocks[0].object_id);
-                        $("#medication-preview").attr("data-id", response.blocks[0].object_id);
-                        $("#medication-character").attr("data-id", response.blocks[0].object_id);
-                        $("#medication-file").attr("data-block-id", response.blocks[0].object_id);
-                        $("#description-file").attr("data-id", response.blocks[0].object_id);
-
-                        break;
-
-                    case "comment-upload":
-                        $(this).parent(".uploader").addClass("uploader_hidden");
-                        $(this).parent(".uploader").find("label").css({
-                            "background-repeat": "no-repeat",
-                            "background-image": `url(/public/${response.blocks[0].path})`,
-                            "background-size": "contain",
-                            "background-position": "center",
-                            "border-color": "transparent"
-                        });
-
-                        $(this).parents(".uploader").find("svg.icon-delete").attr("data-block-file-id", response.blocks[0].id);
-                        $(this).parents(".uploader").find("svg.icon-delete").attr("data-block-type-id", response.blocks[0].block_type_id);
-
-                        $(this).parents(".uploader").parent().find(".input_block").find("textarea").attr("name", `${$(this).parents(".uploader").parent().find(".input_block").find("textarea").attr("name")}${response.blocks[0].block_id}`);
-
-                        $(this).parents(".uploader").find("input[type='file']").prop("disabled", true);
-                        $(this).parents(".uploader").find(".uploader__header").css("cursor", "default");
-
-                        break;
-
-                    case "preview-news-image":
-                        $(this).parent(".uploader").addClass("uploader_hidden");
-                        $(this).parent(".uploader").find("label").css({
-                            "background-repeat": "no-repeat",
-                            "background-image": `url(/public/${response.path})`,
-                            "background-size": "contain",
-                            "background-position": "center",
-                            "border-color": "transparent"
-                        });
-
-                        $(this).parents(".uploader").find("svg.icon-delete").attr("data-block-file-id", response.id);
-
-                        // $(this).parents(".uploader").parent().find(".input_block").find("textarea").attr("name", `${$(this).parents(".uploader").parent().find(".input_block").find("textarea").attr("name")}${response.block_id}`);
-
-                        $(this).parents(".uploader").find("input[type='file']").prop("disabled", true);
-                        $(this).parents(".uploader").find(".uploader__header").css("cursor", "default");
-
-                        $("input[name='object_id']").val(response.object_id);
-
-                        break;
-
-                    case "text-image-uploader":
-                        $(this).parent(".uploader").addClass("uploader_hidden");
-                        $(this).parent(".uploader").find("label").css({
-                            "background-repeat": "no-repeat",
-                            "background-image": `url(/public/${response.blocks[0].path})`,
-                            "background-size": "contain",
-                            "background-position": "center",
-                            "border-color": "transparent"
-                        });
-
-                        $(this).parents(".uploader").find("svg.icon-delete").attr("data-block-file-id", response.blocks[0].id);
-
-                        // $(this).parents(".uploader").parent().find(".input_block").find("textarea").attr("name", `${$(this).parents(".uploader").parent().find(".input_block").find("textarea").attr("name")}${response.block_id}`);
-
-                        $(this).parents(".uploader").find("input[type='file']").prop("disabled", true);
-                        $(this).parents(".uploader").find(".uploader__header").css("cursor", "default");
-                        break;
-
-                    case "image-block-uploader":
-                        newBlock = $($(this).parents(".uploader").find(".uploader__item")[0]).clone();
-                        Array.from(response.blocks).forEach(el => {
-                            $(newBlock).find(".delete").attr("data-block-file-id", el.id);
-                            $(newBlock).find(".delete").attr("data-block-type-id", el.block_type_id);
-                            $(newBlock).find("p").text(el.name);
-                            $(newBlock).removeClass("uploader__item_invisible");
-                            $(this).parents(".uploader").find(".uploader__items").append(newBlock);
-                        });
-
-                        $("input[name='object_id']").val(response.blocks[0].object_id);
-                        $(this).attr("data-block-id", response.blocks[0].object_id);
-                        $("#medication-preview").attr("data-id", response.blocks[0].object_id);
-                        $("input[name='object_id']").val(response.blocks[0].object_id);
-
-                        break;
-
-                    case "image-main-block-uploader":
-                        $(this).parent(".uploader").addClass("uploader_hidden");
-                        $(this).parent(".uploader").find("label").css({
-                            "background-repeat": "no-repeat",
-                            "background-image": `url(/public/${response.blocks[0].path})`,
-                            "background-size": "contain",
-                            "background-position": "center",
-                            "border-color": "transparent"
-                        });
-
-                        $(this).parents(".uploader").find("svg.icon-delete").attr("data-block-file-id", response.blocks[0].id);
-
-                        $(this).parents(".uploader").find("input[type='file']").prop("disabled", true);
-                        $(this).parents(".uploader").find(".uploader__header").css("cursor", "default");
-
-                        $("input[name='object_id']").val(response.object_id);
-                        $("input[name='object_id']").val(response.blocks[0].object_id);
-                        $("#medication-preview").attr("data-id", response.blocks[0].object_id);
-
                         break;
                 }
 
@@ -558,12 +437,11 @@ $(function () {
     $(".accordion").on("click", ".uploader svg.delete", function () {
         $.ajax({
             type: "DELETE",
-            url: "/api/blocks",
+            url: "/api/images",
             context: this,
             data: {
-                block_file_id: $(this).data("block-file-id"),
+                image_id: $(this).data("block-file-id"),
                 id: $(this).parents(".uploader").find(".uploader__file").attr("id"),
-                block_type_id: $(this).data("block-type-id"),
             },
             dataType: "json",
             success: function (response) {
@@ -647,17 +525,16 @@ $(function () {
 
         }
         else {
-
             let formData = new FormData();
 
             Array.from(this.files).forEach((file, index) => {
                 formData.append(`file${parseInt(index) + 1}`, file);
             });
 
-            formData.append('type', $(this).attr("id").replace(/_\d+$/, ""));
+            formData.append('type', $(this).attr("id"));
 
             if ($(this).data("id") != undefined)
-                formData.append('id', $(this).attr("data-id").replace(/_\d+$/, ""));
+                formData.append('id', $("input[name='object_id']").val());
 
             $.ajax({
                 type: "POST",
@@ -669,106 +546,18 @@ $(function () {
                 processData: false,
                 dataType: "json",
                 success: function (response) {
-                    if ($(this).parents(".uploader-alt").find(".uploader-alt__items").length > 0) {
-                        let newBlock = $(this).parents(".uploader-alt").find(".uploader-alt__item").clone();
-                        $(newBlock).find("p").text(response.name);
-                        $(newBlock).find(".delete").attr("data-id", response.id);
-                        $(newBlock).removeClass("uploader-alt__item_invisible");
-                        $(this).parents(".uploader-alt").find(".uploader-alt__items").append(newBlock);
-                    } else {
-                        $(this).parents(".uploader-alt").addClass("uploader-alt_hidden");
-                        $(this).parents(".uploader-alt").find(".uploader-alt__header").css({
-                            "border-color": "transparent",
-                            "background-image": `url("/public/${response.path}")`,
-                            "cursor": "default",
-                            "background-position": "center center",
-                            "background-size": "contain",
-                            "background-repeat": "no-repeat"
-                        });
-                        $(this).attr("data-id", response.id);
-                    }
+                    $("input[name='object_id']").val(response.id);
 
-                    switch ($(this).attr("id").replace(/_\d+$/, "")) {
-                        case "medication":
-                            Array.from($(this).parents(".accordion").find("input[type='text']")).forEach(el => {
-                                if ($(el).attr("class") == "")
-                                    $(el).attr("name", `${$(el).attr("name")}_${response.id}`);
-                            });
-
-                            Array.from($(this).parents(".accordion").find("textarea")).forEach(el => {
-                                $(el).attr("name", `${$(el).attr("name")}_${response.id}`);
-                            });
-
-                            $("#medication-file").attr("data-id", response.id);
-                            break;
-
-                        case "medication-file":
-                            Array.from($(this).parents(".accordion").find("input[type='text']")).forEach(el => {
-                                if ($(el).attr("class") == "")
-                                    $(el).attr("name", `${$(el).attr("name")}_${response.id}`);
-                            });
-
-                            Array.from($(this).parents(".accordion").find("textarea")).forEach(el => {
-                                $(el).attr("name", `${$(el).attr("name")}_${response.id}`);
-                            });
-
-                            $("#medication").attr("data-id", response.id);
-
-                            break;
-
-                        case "map-image":
-                            $(this).prop("disabled", true);
-                            break;
-
-                        case "map-schema":
-                            $(this).prop("disabled", true);
-                            $(this).parents(".uploader-alt").find(".uploader-alt__header").css("cursor", "default");
-                            break;
-
-                        case "medication-types":
-                            $("input[name='title']").attr("name", `${$("input[name='title']").attr("name")}_${response.id}`);
-                            $("input[name='object_id']").val(response.id);
-                            break;
-
-                        case "medication-preview":
-                            $("input[name='object_id']").val(response.object_id);
-                            $(this).attr("data-id", response.id);
-                            $("#medication-character").attr("data-id", response.object_id);
-                            $("#medication-file").attr("data-block-id", response.object_id);
-                            $("#description-file").attr("data-id", response.object_id);
-                            break;
-
-                        case "preview-news-image":
-                            $("input[name='object_id']").val(response.object_id);
-                            break;
-
-                        case "person":
-                            $("input[name='object_id']").val(response.id);
-                            break;
-
-                        case "medication-character":
-                            $(this).prop("disabled", true);
-                            $(this).attr("data-id", response.object_id);
-                            $("input[name='object_id']").val(response.id);
-                            $("#medication-file").attr("data-block-id", response.object_id);
-                            $("#medication-preview").attr("data-id", response.id);
-                            $("#description-file").attr("data-id", response.object_id);
-                            break
-
-                        case "description-file":
-                            $(this).prop("disabled", true);
-                            $("input[name='object_id']").val(response.id);
-                            $(this).attr("data-id", response.object_id);
-                            $("#medication-character").attr("data-id", response.object_id);
-                            $("#medication-preview").attr("data-id", response.id);
-                            $("#medication-file").attr("data-block-id", response.object_id);
-                            break;
-
-                        case "url":
-                            console.log(1);
-                            break;
-
-                    }
+                    $(this).parents(".uploader-alt").addClass("uploader-alt_hidden");
+                    $(this).parents(".uploader-alt").find(".uploader-alt__header").css({
+                        "border-color": "transparent",
+                        "background-image": `url("/media/${response.path}")`,
+                        "cursor": "default",
+                        "background-position": "center center",
+                        "background-size": "contain",
+                        "background-repeat": "no-repeat"
+                    });
+                    $(this).attr("data-id", response.id);
                 }
             });
 
@@ -1169,7 +958,7 @@ $(function () {
             url: "/api/images",
             context: this,
             data: {
-                id: $(this).data("id"),
+                id: $("input[name='object_id']").val(),
                 type: $(this).parents(".uploader-alt").find("input[type='file']").attr("id").replace(/_\d+$/, ""),
             },
             dataType: "json",

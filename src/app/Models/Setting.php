@@ -13,10 +13,9 @@ class Setting extends Model
 
   public $fillable = [
     'address',
-    'phones',
+    'phone',
     'email',
-    'youtube',
-    'vk',
-    'telegram',
+    'inn',
+    'ogrn'
   ];
 }

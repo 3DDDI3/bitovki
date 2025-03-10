@@ -29,8 +29,6 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.4/croppie.min.css" />
 
-    @vite(['resources/sass/base/_fonts.sass', 'resources/sass/base/_farm-dev.scss', 'resources/sass/base/_supervision.scss'])
-
 </head>
 
 <body>

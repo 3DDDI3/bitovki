@@ -31,12 +31,4 @@ use Illuminate\Support\Facades\Route;
 Route::group(['namespace' => 'App\Http\Controllers'], function () {
 
     Route::match(['get', 'post'], '/', [IndexController::class, 'index'])->name('index');
-
-    Route::prefix('pages')->group(function () {
-        Route::get('/{url}', [PageController::class, 'index'])->name('page');
-    });
-
-    Route::get('/search', [SearchController::class, 'index']);
-
-    Route::get('pages/news/{url}', [NewsController::class, 'index'])->name('page.new');
 });

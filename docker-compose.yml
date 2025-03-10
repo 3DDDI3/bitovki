@@ -24,9 +24,11 @@ services:
       context: dockerfiles
       dockerfile: nodejs.Dockerfile
     ports:
-      - 5170:5174
+      - 5174:5174
     volumes:
       - ./src:/var/www/laravel
+      - /etc/ssl/certs:/etc/ssl/certs
+      - /var/www/httpd-cert/www-root:/var/www/httpd-cert/www-root
     networks:
       - backend
 

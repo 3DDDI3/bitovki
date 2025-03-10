@@ -5,6 +5,8 @@ namespace App\Providers;
 use App\Models\Company;
 use App\Models\CompanyContact;
 use App\Models\Constructor\Page;
+use App\Models\Main\Infographic;
+use App\Models\Main\Page as MainPage;
 use App\Models\SEO;
 use App\Models\Setting;
 use Artesaos\SEOTools\Facades\JsonLd;
@@ -67,10 +69,18 @@ class AppServiceProvider extends ServiceProvider
         //     ->orderBy('rating')
         //     ->get();
 
+        $page = MainPage::query()->find(1);
+
+        $infographics = Infographic::query()
+            ->orderBy('id')
+            ->get();
+
         // View::composer('includes.head', fn($view) => $view->with(['seo' => $seo]));
         View::composer('layouts.default', fn($view) => $view->with([
             'setting' => $setting,
             // 'seo' => $seo,
+            'page' => $page,
+            'infographics' => $infographics,
             'setting' => $setting,
         ]));
     }

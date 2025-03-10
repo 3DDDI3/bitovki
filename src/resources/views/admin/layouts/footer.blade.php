@@ -5,6 +5,10 @@
 <script src='/lib/Summernote/summernote-lite.min.js'></script>
 <script src='/lib/Summernote/lang/summernote-ru-RU.js'></script>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.2.3/purify.js"
+    integrity="sha512-IRojSjXjCMZiTCPAimTbaT6XJW+6DCHZEAldmwrqWQ8hMGdy7wJxSaf11t/M6sM/Jjqz6RZ0vDrC6FBf2QfLUg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
 <script src='/private/src/js/editor.js?v={{ sha1_file(public_path('private/src/js/editor.js')) }}'></script>
 <!-- /Summernote -->
 
