@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\Main\PageController;
 use App\Http\Controllers\Admin\Main\QAController;
 use App\Http\Controllers\Admin\Main\ReviewController;
 use App\Http\Controllers\Admin\Main\VariantController;
+use App\Http\Controllers\Admin\Service\RequestController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\SettingsController;
 use App\Http\Controllers\Admin\Users\UsersController;
@@ -127,27 +128,11 @@ Route::prefix('admin')
                     ->group(function () {
                         Route::match(['get', 'post'], '/', [SettingsController::class, 'index'])->name('index');
                     });
-            });
 
-        Route::prefix('feedback')
-            ->name('feedback.')
-            ->group(function () {
-                Route::prefix('pharmacovigilance')
-                    ->name('pharmacovigilance.')
+                Route::prefix('feedback')
+                    ->name('feedback.')
                     ->group(function () {
-                        Route::get('/', [PharmacovigilanceController::class, 'index'])->name('index');
-                    });
-
-                Route::prefix('company')
-                    ->name('company.')
-                    ->group(function () {
-                        Route::get('/', [CompanyController::class, 'index'])->name('index');
-                    });
-
-                Route::prefix('contact')
-                    ->name('contact.')
-                    ->group(function () {
-                        Route::get('/', [ContactController::class, 'index'])->name('index');
+                        Route::get('/', [RequestController::class, 'index'])->name('index');
                     });
             });
     });

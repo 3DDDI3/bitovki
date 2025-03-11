@@ -11,5 +11,8 @@ class Request extends Model
 
     protected $table = 'requests';
 
-    protected $fillable = [];
+    protected $fillable = [
+        'phone',
+        'comment',
+    ];
 }

@@ -54,25 +54,13 @@
     ])
 </x-Admin.NavBar>
 
-<x-Admin.NavBar title="Обратная связь" url="feedback" all="{{ isset($all) && $all }}">
-    @include('admin.includes.menu.item', [
-        'route' => 'admin.feedback.pharmacovigilance.index',
-        'name' => 'Фармаконадзор',
-        'data' => 'pharmacovigilance',
-    ])
-    @include('admin.includes.menu.item', [
-        'route' => 'admin.feedback.company.index',
-        'name' => 'Анкета по качеству',
-        'data' => 'company',
-    ])
-    @include('admin.includes.menu.item', [
-        'route' => 'admin.feedback.contact.index',
-        'name' => 'Запрос',
-        'data' => 'contact',
-    ])
-</x-Admin.NavBar>
-
 <x-Admin.NavBar title="Служебное" url="services" all="{{ isset($all) && $all }}">
+    @include('admin.includes.menu.item', [
+        'route' => 'admin.services.feedback.index',
+        'name' => 'Обратная связь',
+        'data' => 'feedback',
+    ])
+
     @include('admin.includes.menu.item', [
         'route' => 'admin.services.users.index',
         'name' => 'Пользователи',

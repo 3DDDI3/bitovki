@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Builder;
 /**
  * Class ProductFilter
  */
-class IndexMedicationFilter extends BaseFilter
+class CatalogFilter extends BaseFilter
 {
     /**
      * Фильтрация по категории

@@ -72,12 +72,12 @@ class AppServiceProvider extends ServiceProvider
         $page = MainPage::query()->find(1);
 
         $infographics = Infographic::query()
+            ->where(['hide' => 0])
             ->orderBy('id')
             ->get();
 
         // View::composer('includes.head', fn($view) => $view->with(['seo' => $seo]));
         View::composer('layouts.default', fn($view) => $view->with([
-            'setting' => $setting,
             // 'seo' => $seo,
             'page' => $page,
             'infographics' => $infographics,

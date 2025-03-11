@@ -30,7 +30,7 @@
 
                     <x-admin::uploader-alt id="{{ !empty($object->id) ? $object->id : 'files' }}" :isHidden=false
                         :isDeletable=false relationship="attachedImages" block-id="item_images" :isSingle=false
-                        :isMultiple=true accept="" {{-- :width=529 :height=353 header="Размер картинки 529х353" --}} :$object />
+                        header="Галерея изображений" :isMultiple=true accept="" {{-- :width=529 :height=353  --}} :$object />
                 </x-admin::accordion-item>
 
                 <x-admin::accordion-item header="Характеристики товара">
@@ -61,21 +61,27 @@
 
                 <x-admin::accordion-item header="Информация о цене и рассрочке">
                     @include('admin.includes.input', [
-                        'label' => 'Страя цена:',
+                        'label' => 'Старая цена:',
                         'name' => 'old_price',
-                        'value' => number_format($object->old_price, 2, '.', ' ') ?? '',
+                        'value' => !empty($object->old_price)
+                            ? number_format($object->old_price, 2, '.', ' ')
+                            : null,
                     ])
 
                     @include('admin.includes.input', [
                         'label' => 'Новая цена:',
                         'name' => 'new_price',
-                        'value' => number_format($object->new_price, 2, '.', ' ') ?? '',
+                        'value' => !empty($object->new_price)
+                            ? number_format($object->new_price, 2, '.', ' ')
+                            : '',
                     ])
 
                     @include('admin.includes.input', [
                         'label' => 'Ежемесячная оплата:',
                         'name' => 'monthly_payment',
-                        'value' => number_format($object->monthly_payment, 2, '.', ' ') ?? '',
+                        'value' => !empty($object->monthly_payment)
+                            ? number_format($object->monthly_payment, 2, '.', ' ')
+                            : '',
                     ])
 
                     @include('admin.includes.input', [

@@ -99,7 +99,7 @@
 
             @if (!empty($object) && $object->$relationship?->count() > 0 && !empty($object?->$relationship))
                 @if ($object->$relationship instanceof Illuminate\Database\Eloquent\Collection)
-                    @foreach ($object->$relationship as $file)
+                    @foreach ($object->$relationship()->orderBy('rating', 'desc')->get() as $file)
                         <div class="uploader__item">
                             <svg fill="#000000" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
                                 <g id="SVGRepo_bgCarrier" stroke-width="0"></g>

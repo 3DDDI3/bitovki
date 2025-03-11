@@ -24,8 +24,8 @@ class PostRequest extends FormRequest
     public function rules()
     {
         return [
-            'phone' => ['required', 'string'],
-            'comment' => ['nullable', 'string'],
+            'tel' => ['required', 'string'],
+            'comment' => ['required', 'string'],
         ];
     }
 
@@ -33,6 +33,7 @@ class PostRequest extends FormRequest
     {
         return [
             'phone.required' => 'Поле телефон обязательное',
+            'comment.required' => 'Поле комментарий обязательное',
         ];
     }
 }

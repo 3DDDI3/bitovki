@@ -12,7 +12,7 @@ $(function () {
 
             $.ajax({
                 type: "PATCH",
-                url: "/api/blocks/swap-files",
+                url: "/api/images/swap-files",
                 data: Object.fromEntries(sortableArray),
                 dataType: "json",
                 success: function (response) {
@@ -81,265 +81,265 @@ $(function () {
         }
     });
 
-    $(".list-button .list__item").on("click", function () {
-        /**
-         * @todo реализовать создание записи с создаваемым блоком и получение ее id для дальнейшей передеачи ее в имя (*_id) создаваемого блока
-         */
-        $(this).parent().addClass("list_hidden");
-        $(this).parent().hide();
+    // $(".list-button .list__item").on("click", function () {
+    //     /**
+    //      * @todo реализовать создание записи с создаваемым блоком и получение ее id для дальнейшей передеачи ее в имя (*_id) создаваемого блока
+    //      */
+    //     $(this).parent().addClass("list_hidden");
+    //     $(this).parent().hide();
 
-        let newBlock = null, data = null;
+    //     let newBlock = null, data = null;
 
-        Array.from($(".template .accordion__item")).forEach(el => {
-            if ($(el).data("block-type-id") == $(this).data("id")) {
-                newBlock = $(el).clone();
-                data = {
-                    "block_type_id": $(el).data("block-type-id"),
-                    "page_id": $(el).data("page-id"),
-                };
-            }
-        })
+    //     Array.from($(".template .accordion__item")).forEach(el => {
+    //         if ($(el).data("block-type-id") == $(this).data("id")) {
+    //             newBlock = $(el).clone();
+    //             data = {
+    //                 "block_type_id": $(el).data("block-type-id"),
+    //                 "page_id": $(el).data("page-id"),
+    //             };
+    //         }
+    //     })
 
-        $(newBlock).find(".chosen-container").remove();
+    //     $(newBlock).find(".chosen-container").remove();
 
-        $(newBlock).find(".chosen").chosen({});
-        $(newBlock).find(".chosen-choices").sortable({
-        });
+    //     $(newBlock).find(".chosen").chosen({});
+    //     $(newBlock).find(".chosen-choices").sortable({
+    //     });
 
-        if ($(newBlock).find("select.select").length > 0) {
-            $(newBlock).find(".select2.select2-container").remove();
-            $(newBlock).find("select.select").select2({
-            });
-            $(newBlock).find("select.select").on("select2:select", function (evt) {
-                var element = evt.params.data.element;
-                var $element = $(element);
+    //     if ($(newBlock).find("select.select").length > 0) {
+    //         $(newBlock).find(".select2.select2-container").remove();
+    //         $(newBlock).find("select.select").select2({
+    //         });
+    //         $(newBlock).find("select.select").on("select2:select", function (evt) {
+    //             var element = evt.params.data.element;
+    //             var $element = $(element);
 
-                $element.detach();
-                $(this).append($element);
-                $(this).trigger("change");
-            });
-        }
+    //             $element.detach();
+    //             $(this).append($element);
+    //             $(this).trigger("change");
+    //         });
+    //     }
 
-        $(newBlock).find(".note-editor").remove();
+    //     $(newBlock).find(".note-editor").remove();
 
-        $.ajax({
-            type: "POST",
-            url: "/api/blocks",
-            data: data,
-            context: this,
-            dataType: "json",
-            success: function (response) {
-                console.log(response);
+    //     $.ajax({
+    //         type: "POST",
+    //         url: "/api/blocks",
+    //         data: data,
+    //         context: this,
+    //         dataType: "json",
+    //         success: function (response) {
+    //             console.log(response);
 
-                $(newBlock).find("textarea.editor").attr("name", `${$(newBlock).find("textarea.editor").attr("name")}_${response.blocks.id}`);
-                $(newBlock).attr("data-block-id", response.blocks.id);
-                $(newBlock).find(".uploader input[type='file']").attr("data-block-id", response.blocks.id);
-                if ($(newBlock).find(".comment-wrapper div .input_block input[type='text']").length > 0)
-                    $(newBlock).find(".comment-wrapper div .input_block input[type='text']").attr("name", `${$(newBlock).find(".comment-wrapper div .input_block input[type='text']").attr("name")}_${response.blocks.id}`);
-                if ($(newBlock).find("select[name='personal_block']").length > 0) {
-                    $(newBlock).find("select[name='personal_block']").attr("data-block-id", response.blocks.id);
-                    $(newBlock).find("select[name='personal_block']").attr("name", `${$(newBlock).find("select[name='personal_block']").attr("name")}_${response.blocks.id}`);
-                }
+    //             $(newBlock).find("textarea.editor").attr("name", `${$(newBlock).find("textarea.editor").attr("name")}_${response.blocks.id}`);
+    //             $(newBlock).attr("data-block-id", response.blocks.id);
+    //             $(newBlock).find(".uploader input[type='file']").attr("data-block-id", response.blocks.id);
+    //             if ($(newBlock).find(".comment-wrapper div .input_block input[type='text']").length > 0)
+    //                 $(newBlock).find(".comment-wrapper div .input_block input[type='text']").attr("name", `${$(newBlock).find(".comment-wrapper div .input_block input[type='text']").attr("name")}_${response.blocks.id}`);
+    //             if ($(newBlock).find("select[name='personal_block']").length > 0) {
+    //                 $(newBlock).find("select[name='personal_block']").attr("data-block-id", response.blocks.id);
+    //                 $(newBlock).find("select[name='personal_block']").attr("name", `${$(newBlock).find("select[name='personal_block']").attr("name")}_${response.blocks.id}`);
+    //             }
 
-                if ($(newBlock).find(".uploader__header").length > 0) {
-                    $(newBlock).find(".uploader__header").attr("for", `${$(newBlock).find(".uploader__header").attr("for")}_${response.blocks.id}`);
-                    $(newBlock).find("input[type='file']").attr("id", `${$(newBlock).find("input[type='file']").attr("id")}_${response.blocks.id}`);
-                }
+    //             if ($(newBlock).find(".uploader__header").length > 0) {
+    //                 $(newBlock).find(".uploader__header").attr("for", `${$(newBlock).find(".uploader__header").attr("for")}_${response.blocks.id}`);
+    //                 $(newBlock).find("input[type='file']").attr("id", `${$(newBlock).find("input[type='file']").attr("id")}_${response.blocks.id}`);
+    //             }
 
-                if ($(newBlock).find(".menu-block__create").length > 0) {
-                    $(newBlock).find(".menu-block__create").attr("data-block-id", response.blocks.id);
-                }
-            }
-        });
+    //             if ($(newBlock).find(".menu-block__create").length > 0) {
+    //                 $(newBlock).find(".menu-block__create").attr("data-block-id", response.blocks.id);
+    //             }
+    //         }
+    //     });
 
-        $(newBlock).find("textarea.editor").summernote({
-            height: 300, // Adjust height as needed
-            lang: 'ru-RU', // Language setting
-            fontNames: [
-                'Geologica',
-                'Arial',
-                'Arial Black',
-                'Comic Sans MS',
-                'Courier New',
-            ],
-            fontSizes: ['8', '9', '10', '11', '12', '13', '14', '15', '16', '18', '20', '22', '24', '28', '32', '36', '40', '48'],
-            toolbar: [
-                ['style'],
-                ['style', ['bold', 'italic', 'underline', 'clear']],
-                ['font', ['strikethrough']],
-                ['fontsize', ['fontsize']],
-                ['fontname', ['fontname']],
-                ['color', ['color']],
-                ['para', ['ul', 'ol', 'paragraph']],
-                ['insert', ['picture', 'link', 'video', 'table']],
-                ['misc', ['fullscreen', 'codeview', 'undo', 'redo', 'help']],
-                ['customGroup', ['customButton']],
-            ],
-            styleTags: [
-                { title: 'Заголовок 1', tag: 'h1', className: 'progect__title', value: 'h1' },
-                { title: 'Заголовок 2', tag: 'h2', className: 'progect__sub-title', value: 'h2' },
-                { title: 'Заголовок 3', tag: 'h3', className: 'title-desc', value: 'h3' },
-                { title: 'Заголовок 3_над списком', tag: 'h3', className: '  farm-service__title title-desc', value: 'h3' },
-                { title: 'Текст', tag: 'p', className: 'item-text', value: 'p' },
-                { title: 'Текст_альт', tag: 'p', className: 'supervision__desc', value: 'p' },
-            ],
-            buttons: {
-                customButton: function (editor) {
-                    let blocks = [
-                        'description',
-                        'text_image',
-                        'comment',
-                    ];
-                    let blocks_alt = [
-                        'indications',
-                        'instraction_short_descripion',
-                    ]
+    //     $(newBlock).find("textarea.editor").summernote({
+    //         height: 300, // Adjust height as needed
+    //         lang: 'ru-RU', // Language setting
+    //         fontNames: [
+    //             'Geologica',
+    //             'Arial',
+    //             'Arial Black',
+    //             'Comic Sans MS',
+    //             'Courier New',
+    //         ],
+    //         fontSizes: ['8', '9', '10', '11', '12', '13', '14', '15', '16', '18', '20', '22', '24', '28', '32', '36', '40', '48'],
+    //         toolbar: [
+    //             ['style'],
+    //             ['style', ['bold', 'italic', 'underline', 'clear']],
+    //             ['font', ['strikethrough']],
+    //             ['fontsize', ['fontsize']],
+    //             ['fontname', ['fontname']],
+    //             ['color', ['color']],
+    //             ['para', ['ul', 'ol', 'paragraph']],
+    //             ['insert', ['picture', 'link', 'video', 'table']],
+    //             ['misc', ['fullscreen', 'codeview', 'undo', 'redo', 'help']],
+    //             ['customGroup', ['customButton']],
+    //         ],
+    //         styleTags: [
+    //             { title: 'Заголовок 1', tag: 'h1', className: 'progect__title', value: 'h1' },
+    //             { title: 'Заголовок 2', tag: 'h2', className: 'progect__sub-title', value: 'h2' },
+    //             { title: 'Заголовок 3', tag: 'h3', className: 'title-desc', value: 'h3' },
+    //             { title: 'Заголовок 3_над списком', tag: 'h3', className: '  farm-service__title title-desc', value: 'h3' },
+    //             { title: 'Текст', tag: 'p', className: 'item-text', value: 'p' },
+    //             { title: 'Текст_альт', tag: 'p', className: 'supervision__desc', value: 'p' },
+    //         ],
+    //         buttons: {
+    //             customButton: function (editor) {
+    //                 let blocks = [
+    //                     'description',
+    //                     'text_image',
+    //                     'comment',
+    //                 ];
+    //                 let blocks_alt = [
+    //                     'indications',
+    //                     'instraction_short_descripion',
+    //                 ]
 
-                    let name = $(editor.$note[0]).attr("name").replace(/_\d+$/, "");
+    //                 let name = $(editor.$note[0]).attr("name").replace(/_\d+$/, "");
 
-                    if (blocks_alt.includes(name)) {
-                        return $.summernote.ui.button({
-                            contents: '<i class="note-icon-trash"></i>',
-                            tooltip: 'Убрать внешние стили',
-                            click: function (button) {
+    //                 if (blocks_alt.includes(name)) {
+    //                     return $.summernote.ui.button({
+    //                         contents: '<i class="note-icon-trash"></i>',
+    //                         tooltip: 'Убрать внешние стили',
+    //                         click: function (button) {
 
-                                let clearText = $(button.currentTarget).parents(".input_block").find(".editor").summernote("code").replaceAll(/(\s?style="[^"]*")|(\s?class="[^"]*")/g, "");
+    //                             let clearText = $(button.currentTarget).parents(".input_block").find(".editor").summernote("code").replaceAll(/(\s?style="[^"]*")|(\s?class="[^"]*")/g, "");
 
-                                clearText = clearText.replaceAll(/\<ul\>/g, "<ul class='farm-service_alt__items'>");
-                                clearText = clearText.replaceAll(/\<li\>/g, "<li class='farm-service_alt__item item-text'>");
+    //                             clearText = clearText.replaceAll(/\<ul\>/g, "<ul class='farm-service_alt__items'>");
+    //                             clearText = clearText.replaceAll(/\<li\>/g, "<li class='farm-service_alt__item item-text'>");
 
-                                $(button.currentTarget).parents(".input_block").find(".editor").summernote('code', '');
-                                $(button.currentTarget).parents(".input_block").find(".editor").summernote('pasteHTML', clearText);
-                            }
-                        }).render();
-                    }
+    //                             $(button.currentTarget).parents(".input_block").find(".editor").summernote('code', '');
+    //                             $(button.currentTarget).parents(".input_block").find(".editor").summernote('pasteHTML', clearText);
+    //                         }
+    //                     }).render();
+    //                 }
 
-                    if (blocks.includes(name))
-                        return $.summernote.ui.button({
-                            contents: '<i class="note-icon-trash"></i>',
-                            tooltip: 'Убрать внешние стили',
-                            click: function (button) {
+    //                 if (blocks.includes(name))
+    //                     return $.summernote.ui.button({
+    //                         contents: '<i class="note-icon-trash"></i>',
+    //                         tooltip: 'Убрать внешние стили',
+    //                         click: function (button) {
 
-                                let clearText = $(button.currentTarget).parents(".input_block").find(".editor").summernote("code").replaceAll(/(\s?style="[^"]*")|(\s?class="[^"]*")/g, "");
+    //                             let clearText = $(button.currentTarget).parents(".input_block").find(".editor").summernote("code").replaceAll(/(\s?style="[^"]*")|(\s?class="[^"]*")/g, "");
 
-                                clearText = clearText.replaceAll(/\<ul\>/g, "<ul class='farm-service__items'>");
-                                clearText = clearText.replaceAll(/\<li\>/g, "<li class='farm-service__item item-text'>");
+    //                             clearText = clearText.replaceAll(/\<ul\>/g, "<ul class='farm-service__items'>");
+    //                             clearText = clearText.replaceAll(/\<li\>/g, "<li class='farm-service__item item-text'>");
 
-                                $(button.currentTarget).parents(".input_block").find(".editor").summernote('code', '');
-                                $(button.currentTarget).parents(".input_block").find(".editor").summernote('pasteHTML', clearText);
-                            }
-                        }).render();
-                    else
-                        return $.summernote.ui.button({
-                            contents: '<i class="note-icon-trash"></i>',
-                            tooltip: 'Убрать внешние стили',
-                            click: function (button) {
+    //                             $(button.currentTarget).parents(".input_block").find(".editor").summernote('code', '');
+    //                             $(button.currentTarget).parents(".input_block").find(".editor").summernote('pasteHTML', clearText);
+    //                         }
+    //                     }).render();
+    //                 else
+    //                     return $.summernote.ui.button({
+    //                         contents: '<i class="note-icon-trash"></i>',
+    //                         tooltip: 'Убрать внешние стили',
+    //                         click: function (button) {
 
-                                let clearText = $(button.currentTarget).parents(".input_block").find(".editor").summernote("code").replaceAll(/(\s?style="[^"]*")|(\s?class="[^"]*")/g, "");
+    //                             let clearText = $(button.currentTarget).parents(".input_block").find(".editor").summernote("code").replaceAll(/(\s?style="[^"]*")|(\s?class="[^"]*")/g, "");
 
-                                $(button.currentTarget).parents(".input_block").find(".editor").summernote('code', '');
-                                $(button.currentTarget).parents(".input_block").find(".editor").summernote('pasteHTML', clearText);
-                            }
-                        }).render();
-                }
-            },
-            callbacks: {
-                onImageUpload: function (files) {
-                    for (let i = 0; i < files.length; i++) {
-                        $.upload(files[i], $(this));
-                    }
-                },
-                onMediaDelete: function (target, editor) {
-                    let block_id = $(editor).parents(".input_block").find("textarea.editor").attr("name").match(/_(\d+)/)[1];
-                    let id = "editor_image";
-                    let src = $(target).attr("src");
+    //                             $(button.currentTarget).parents(".input_block").find(".editor").summernote('code', '');
+    //                             $(button.currentTarget).parents(".input_block").find(".editor").summernote('pasteHTML', clearText);
+    //                         }
+    //                     }).render();
+    //             }
+    //         },
+    //         callbacks: {
+    //             onImageUpload: function (files) {
+    //                 for (let i = 0; i < files.length; i++) {
+    //                     $.upload(files[i], $(this));
+    //                 }
+    //             },
+    //             onMediaDelete: function (target, editor) {
+    //                 let block_id = $(editor).parents(".input_block").find("textarea.editor").attr("name").match(/_(\d+)/)[1];
+    //                 let id = "editor_image";
+    //                 let src = $(target).attr("src");
 
-                    $.ajax({
-                        type: "DELETE",
-                        url: "/api/blocks",
-                        data: {
-                            block_id: block_id,
-                            id: id,
-                            src: src,
-                        },
-                        dataType: "json",
-                        success: function (response) {
-                            console.log(response);
-                        }
-                    });
-                }
-            },
-        });
+    //                 $.ajax({
+    //                     type: "DELETE",
+    //                     url: "/api/blocks",
+    //                     data: {
+    //                         block_id: block_id,
+    //                         id: id,
+    //                         src: src,
+    //                     },
+    //                     dataType: "json",
+    //                     success: function (response) {
+    //                         console.log(response);
+    //                     }
+    //                 });
+    //             }
+    //         },
+    //     });
 
-        $(".accordion").append(newBlock);
-    });
+    //     $(".accordion").append(newBlock);
+    // });
 
-    $(".sorting-button").on("click", function () {
-        if ($(".accordion.ui-sortable").length == 0) {
-            $(this).text("Запретить сортировку");
-            $(".accordion").sortable({
-                cursor: "grabbing",
-                placeholder: "accordion__item_active",
-                change: function (event, ui) {
-                },
-                start: function (event, ui) {
-                    ui.placeholder.height(ui.item.innerHeight());
-                    $(ui.item).css("border-bottom", "unset");
-                },
-                stop: function (event, ui) {
-                    $(ui.item).css("border-bottom", "1px solid #E6E6E6");
-                },
-                update: function (event, ui) {
-                    let soratbleArray = new Map();
-                    let index = $(event.target).find(".accordion__item").length;
+    // $(".sorting-button").on("click", function () {
+    //     if ($(".accordion.ui-sortable").length == 0) {
+    //         $(this).text("Запретить сортировку");
+    //         $(".accordion").sortable({
+    //             cursor: "grabbing",
+    //             placeholder: "accordion__item_active",
+    //             change: function (event, ui) {
+    //             },
+    //             start: function (event, ui) {
+    //                 ui.placeholder.height(ui.item.innerHeight());
+    //                 $(ui.item).css("border-bottom", "unset");
+    //             },
+    //             stop: function (event, ui) {
+    //                 $(ui.item).css("border-bottom", "1px solid #E6E6E6");
+    //             },
+    //             update: function (event, ui) {
+    //                 let soratbleArray = new Map();
+    //                 let index = $(event.target).find(".accordion__item").length;
 
-                    Array.from($(event.target).find(".accordion__item")).forEach(el => {
-                        if ($(el).attr("data-block-id") != undefined) {
-                            soratbleArray.set($(el).attr("data-block-id"), --index);
-                        }
-                    });
+    //                 Array.from($(event.target).find(".accordion__item")).forEach(el => {
+    //                     if ($(el).attr("data-block-id") != undefined) {
+    //                         soratbleArray.set($(el).attr("data-block-id"), --index);
+    //                     }
+    //                 });
 
-                    $.ajax({
-                        type: "PATCH",
-                        url: "/api/blocks/swap",
-                        data: Object.fromEntries(soratbleArray),
-                        dataType: "json",
-                        success: function (response) {
-                        }
-                    });
-                }
-            });
-        }
-        else {
-            $(this).text("Разрешить сортировку");
-            $(".accordion").sortable("destroy");
-        }
-    });
+    //                 $.ajax({
+    //                     type: "PATCH",
+    //                     url: "/api/blocks/swap",
+    //                     data: Object.fromEntries(soratbleArray),
+    //                     dataType: "json",
+    //                     success: function (response) {
+    //                     }
+    //                 });
+    //             }
+    //         });
+    //     }
+    //     else {
+    //         $(this).text("Разрешить сортировку");
+    //         $(".accordion").sortable("destroy");
+    //     }
+    // });
 
-    $.upload = function (file, editor) {
+    // $.upload = function (file, editor) {
 
-        let block_id = $(editor).parents(".input_block").find("textarea.editor").attr("name").match(/_(\d+)/)[1];
+    //     let block_id = $(editor).parents(".input_block").find("textarea.editor").attr("name").match(/_(\d+)/)[1];
 
-        let formData = new FormData();
-        formData.append('block_id', block_id);
-        formData.append('id', 'editor_image');
-        formData.append('file', file);
+    //     let formData = new FormData();
+    //     formData.append('block_id', block_id);
+    //     formData.append('id', 'editor_image');
+    //     formData.append('file', file);
 
-        $.ajax({
-            method: 'POST',
-            url: '/api/blocks',
-            contentType: false,
-            cache: false,
-            processData: false,
-            data: formData,
-            success: function (src) {
-                editor.summernote('insertImage', `/public/${src.path}`);
-            },
-            error: function (jqXHR, textStatus, errorThrown) {
-                console.error(textStatus + ' ' + errorThrown);
-            }
-        });
-    };
+    //     $.ajax({
+    //         method: 'POST',
+    //         url: '/api/blocks',
+    //         contentType: false,
+    //         cache: false,
+    //         processData: false,
+    //         data: formData,
+    //         success: function (src) {
+    //             editor.summernote('insertImage', `/public/${src.path}`);
+    //         },
+    //         error: function (jqXHR, textStatus, errorThrown) {
+    //             console.error(textStatus + ' ' + errorThrown);
+    //         }
+    //     });
+    // };
 
     $("div.accordion").on("change", ".uploader input[type='file']", function (e) {
 
@@ -1071,159 +1071,159 @@ $(function () {
         });
     });
 
-    $(".phase__create").on("click", function (e) {
-        e.preventDefault();
-        let newBlock = $(this).parents(".accordion__block").find(".phase").eq(0).clone();
+    // $(".phase__create").on("click", function (e) {
+    //     e.preventDefault();
+    //     let newBlock = $(this).parents(".accordion__block").find(".phase").eq(0).clone();
 
-        $.ajax({
-            type: "POST",
-            url: "/api/researches/create",
-            data: { medication_id: $("input[name='object_id']").val() },
-            dataType: "json",
-            context: this,
-            success: function (response) {
-                $(newBlock).find("textarea.editor").attr("name", `${$(newBlock).find("textarea.editor").attr("name")}_${response[0].id}`);
-                Array.from($(newBlock).find("input[type='text']")).forEach(el => {
-                    $(el).attr("name", `${$(el).attr("name")}_${response[0].id}`);
-                });
-                Array.from($(newBlock).find("textarea[type='text']")).forEach(el => {
-                    $(el).attr("name", `${$(el).attr("name")}_${response[0].id}`);
-                });
-                $(newBlock).find(".phase__delete").attr("data-block-id", response[0].id);
+    //     $.ajax({
+    //         type: "POST",
+    //         url: "/api/researches/create",
+    //         data: { medication_id: $("input[name='object_id']").val() },
+    //         dataType: "json",
+    //         context: this,
+    //         success: function (response) {
+    //             $(newBlock).find("textarea.editor").attr("name", `${$(newBlock).find("textarea.editor").attr("name")}_${response[0].id}`);
+    //             Array.from($(newBlock).find("input[type='text']")).forEach(el => {
+    //                 $(el).attr("name", `${$(el).attr("name")}_${response[0].id}`);
+    //             });
+    //             Array.from($(newBlock).find("textarea[type='text']")).forEach(el => {
+    //                 $(el).attr("name", `${$(el).attr("name")}_${response[0].id}`);
+    //             });
+    //             $(newBlock).find(".phase__delete").attr("data-block-id", response[0].id);
 
-                $("input[name='object_id']").val(response[0].object_id);
-                $("#medication-preview").attr("data-id", response[0].object_id);
-                $("#medication-character").attr("data-id", response[0].object_id);
-                $("#medication-file").attr("data-block-id", response[0].object_id);
-                $("#description-file").attr("data-id", response[0].object_id);
-            }
-        });
+    //             $("input[name='object_id']").val(response[0].object_id);
+    //             $("#medication-preview").attr("data-id", response[0].object_id);
+    //             $("#medication-character").attr("data-id", response[0].object_id);
+    //             $("#medication-file").attr("data-block-id", response[0].object_id);
+    //             $("#description-file").attr("data-id", response[0].object_id);
+    //         }
+    //     });
 
-        $(newBlock).find(".note-editor").remove();
+    //     $(newBlock).find(".note-editor").remove();
 
-        $(newBlock).find("textarea.editor").summernote({
-            height: 300, // Adjust height as needed
-            lang: 'ru-RU', // Language setting
-            fontNames: [
-                'Geologica',
-                'Arial',
-                'Arial Black',
-                'Comic Sans MS',
-                'Courier New',
-            ],
-            fontSizes: ['8', '9', '10', '11', '12', '13', '14', '15', '16', '18', '20', '22', '24', '28', '32', '36', '40', '48'],
-            toolbar: [
-                ['style'],
-                ['style', ['bold', 'italic', 'underline', 'clear']],
-                ['font', ['strikethrough']],
-                ['fontsize', ['fontsize']],
-                ['fontname', ['fontname']],
-                ['color', ['color']],
-                ['para', ['ul', 'ol', 'paragraph']],
-                ['insert', ['picture', 'link', 'video', 'table']],
-                ['misc', ['fullscreen', 'codeview', 'undo', 'redo', 'help']],
-                ['customGroup', ['customButton']]
-            ],
-            styleTags: [
-                { title: 'Заголовок 1', tag: 'h1', className: 'progect__title', value: 'h1' },
-                { title: 'Заголовок 2', tag: 'h2', className: 'progect__sub-title', value: 'h2' },
-                { title: 'Заголовок 3', tag: 'h3', className: 'title-desc', value: 'h3' },
-                { title: 'Заголовок 3_над списком', tag: 'h3', className: '  farm-service__title title-desc', value: 'h3' },
-                { title: 'Текст', tag: 'p', className: 'item-text', value: 'p' },
-                { title: 'Текст_альт', tag: 'p', className: 'supervision__desc', value: 'p' },
-            ],
-            buttons: {
-                customButton: function (editor) {
-                    let blocks = [
-                        'description',
-                        'text_image',
-                        'comment',
-                    ];
-                    let blocks_alt = [
-                        'indications',
-                        'instraction_short_descripion',
-                    ]
+    //     $(newBlock).find("textarea.editor").summernote({
+    //         height: 300, // Adjust height as needed
+    //         lang: 'ru-RU', // Language setting
+    //         fontNames: [
+    //             'Geologica',
+    //             'Arial',
+    //             'Arial Black',
+    //             'Comic Sans MS',
+    //             'Courier New',
+    //         ],
+    //         fontSizes: ['8', '9', '10', '11', '12', '13', '14', '15', '16', '18', '20', '22', '24', '28', '32', '36', '40', '48'],
+    //         toolbar: [
+    //             ['style'],
+    //             ['style', ['bold', 'italic', 'underline', 'clear']],
+    //             ['font', ['strikethrough']],
+    //             ['fontsize', ['fontsize']],
+    //             ['fontname', ['fontname']],
+    //             ['color', ['color']],
+    //             ['para', ['ul', 'ol', 'paragraph']],
+    //             ['insert', ['picture', 'link', 'video', 'table']],
+    //             ['misc', ['fullscreen', 'codeview', 'undo', 'redo', 'help']],
+    //             ['customGroup', ['customButton']]
+    //         ],
+    //         styleTags: [
+    //             { title: 'Заголовок 1', tag: 'h1', className: 'progect__title', value: 'h1' },
+    //             { title: 'Заголовок 2', tag: 'h2', className: 'progect__sub-title', value: 'h2' },
+    //             { title: 'Заголовок 3', tag: 'h3', className: 'title-desc', value: 'h3' },
+    //             { title: 'Заголовок 3_над списком', tag: 'h3', className: '  farm-service__title title-desc', value: 'h3' },
+    //             { title: 'Текст', tag: 'p', className: 'item-text', value: 'p' },
+    //             { title: 'Текст_альт', tag: 'p', className: 'supervision__desc', value: 'p' },
+    //         ],
+    //         buttons: {
+    //             customButton: function (editor) {
+    //                 let blocks = [
+    //                     'description',
+    //                     'text_image',
+    //                     'comment',
+    //                 ];
+    //                 let blocks_alt = [
+    //                     'indications',
+    //                     'instraction_short_descripion',
+    //                 ]
 
-                    let name = $(editor.$note[0]).attr("name").replace(/_\d+$/, "");
+    //                 let name = $(editor.$note[0]).attr("name").replace(/_\d+$/, "");
 
-                    if (blocks_alt.includes(name)) {
-                        return $.summernote.ui.button({
-                            contents: '<i class="note-icon-trash"></i>',
-                            tooltip: 'Убрать внешние стили',
-                            click: function (button) {
+    //                 if (blocks_alt.includes(name)) {
+    //                     return $.summernote.ui.button({
+    //                         contents: '<i class="note-icon-trash"></i>',
+    //                         tooltip: 'Убрать внешние стили',
+    //                         click: function (button) {
 
-                                let clearText = $(button.currentTarget).parents(".input_block").find(".editor").summernote("code").replaceAll(/(\s?style="[^"]*")|(\s?class="[^"]*")/g, "");
+    //                             let clearText = $(button.currentTarget).parents(".input_block").find(".editor").summernote("code").replaceAll(/(\s?style="[^"]*")|(\s?class="[^"]*")/g, "");
 
-                                clearText = clearText.replaceAll(/\<ul\>/g, "<ul class='farm-service_alt__items'>");
-                                clearText = clearText.replaceAll(/\<li\>/g, "<li class='farm-service_alt__item item-text'>");
+    //                             clearText = clearText.replaceAll(/\<ul\>/g, "<ul class='farm-service_alt__items'>");
+    //                             clearText = clearText.replaceAll(/\<li\>/g, "<li class='farm-service_alt__item item-text'>");
 
-                                $(button.currentTarget).parents(".input_block").find(".editor").summernote('code', '');
-                                $(button.currentTarget).parents(".input_block").find(".editor").summernote('pasteHTML', clearText);
-                            }
-                        }).render();
-                    }
+    //                             $(button.currentTarget).parents(".input_block").find(".editor").summernote('code', '');
+    //                             $(button.currentTarget).parents(".input_block").find(".editor").summernote('pasteHTML', clearText);
+    //                         }
+    //                     }).render();
+    //                 }
 
-                    if (blocks.includes(name))
-                        return $.summernote.ui.button({
-                            contents: '<i class="note-icon-trash"></i>',
-                            tooltip: 'Убрать внешние стили',
-                            click: function (button) {
+    //                 if (blocks.includes(name))
+    //                     return $.summernote.ui.button({
+    //                         contents: '<i class="note-icon-trash"></i>',
+    //                         tooltip: 'Убрать внешние стили',
+    //                         click: function (button) {
 
-                                let clearText = $(button.currentTarget).parents(".input_block").find(".editor").summernote("code").replaceAll(/(\s?style="[^"]*")|(\s?class="[^"]*")/g, "");
+    //                             let clearText = $(button.currentTarget).parents(".input_block").find(".editor").summernote("code").replaceAll(/(\s?style="[^"]*")|(\s?class="[^"]*")/g, "");
 
-                                clearText = clearText.replaceAll(/\<ul\>/g, "<ul class='farm-service__items'>");
-                                clearText = clearText.replaceAll(/\<li\>/g, "<li class='farm-service__item item-text'>");
+    //                             clearText = clearText.replaceAll(/\<ul\>/g, "<ul class='farm-service__items'>");
+    //                             clearText = clearText.replaceAll(/\<li\>/g, "<li class='farm-service__item item-text'>");
 
-                                $(button.currentTarget).parents(".input_block").find(".editor").summernote('code', '');
-                                $(button.currentTarget).parents(".input_block").find(".editor").summernote('pasteHTML', clearText);
-                            }
-                        }).render();
-                    else
-                        return $.summernote.ui.button({
-                            contents: '<i class="note-icon-trash"></i>',
-                            tooltip: 'Убрать внешние стили',
-                            click: function (button) {
+    //                             $(button.currentTarget).parents(".input_block").find(".editor").summernote('code', '');
+    //                             $(button.currentTarget).parents(".input_block").find(".editor").summernote('pasteHTML', clearText);
+    //                         }
+    //                     }).render();
+    //                 else
+    //                     return $.summernote.ui.button({
+    //                         contents: '<i class="note-icon-trash"></i>',
+    //                         tooltip: 'Убрать внешние стили',
+    //                         click: function (button) {
 
-                                let clearText = $(button.currentTarget).parents(".input_block").find(".editor").summernote("code").replaceAll(/(\s?style="[^"]*")|(\s?class="[^"]*")/g, "");
+    //                             let clearText = $(button.currentTarget).parents(".input_block").find(".editor").summernote("code").replaceAll(/(\s?style="[^"]*")|(\s?class="[^"]*")/g, "");
 
-                                $(button.currentTarget).parents(".input_block").find(".editor").summernote('code', '');
-                                $(button.currentTarget).parents(".input_block").find(".editor").summernote('pasteHTML', clearText);
-                            }
-                        }).render();
-                }
-            },
-            callbacks: {
-                onImageUpload: function (files) {
-                    for (let i = 0; i < files.length; i++) {
-                        $.upload(files[i], $(this));
-                    }
-                },
-                onMediaDelete: function (target, editor) {
-                    let block_id = $(editor).parents(".input_block").find("textarea.editor").attr("name").match(/_(\d+)/)[1];
-                    let id = "editor_image";
-                    let src = $(target).attr("src");
+    //                             $(button.currentTarget).parents(".input_block").find(".editor").summernote('code', '');
+    //                             $(button.currentTarget).parents(".input_block").find(".editor").summernote('pasteHTML', clearText);
+    //                         }
+    //                     }).render();
+    //             }
+    //         },
+    //         callbacks: {
+    //             onImageUpload: function (files) {
+    //                 for (let i = 0; i < files.length; i++) {
+    //                     $.upload(files[i], $(this));
+    //                 }
+    //             },
+    //             onMediaDelete: function (target, editor) {
+    //                 let block_id = $(editor).parents(".input_block").find("textarea.editor").attr("name").match(/_(\d+)/)[1];
+    //                 let id = "editor_image";
+    //                 let src = $(target).attr("src");
 
-                    $.ajax({
-                        type: "DELETE",
-                        url: "/api/blocks",
-                        data: {
-                            block_id: block_id,
-                            id: id,
-                            src: src,
-                        },
-                        dataType: "json",
-                        success: function (response) {
-                            console.log(response);
-                        }
-                    });
-                }
-            },
-        });
+    //                 $.ajax({
+    //                     type: "DELETE",
+    //                     url: "/api/blocks",
+    //                     data: {
+    //                         block_id: block_id,
+    //                         id: id,
+    //                         src: src,
+    //                     },
+    //                     dataType: "json",
+    //                     success: function (response) {
+    //                         console.log(response);
+    //                     }
+    //                 });
+    //             }
+    //         },
+    //     });
 
-        $(newBlock).css("display", "flex");
+    //     $(newBlock).css("display", "flex");
 
-        $(this).parents(".accordion__block").find(".phases").append(newBlock);
-    });
+    //     $(this).parents(".accordion__block").find(".phases").append(newBlock);
+    // });
 
     $(".phases").on("click", "svg.phase__delete", function () {
         $.ajax({

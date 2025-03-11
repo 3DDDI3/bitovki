@@ -13,7 +13,7 @@
             <a class="phone_number" href="tel:{{ preg_replace('/[\s\(\)\-]/', '', $setting->phone) }}"
                 style="text-decoration: none;">{{ $setting->phone }}</a>
             <div class="email" style="text-decoration: none;">{{ $page->email }}</div>
-            <a href="#" style="text-decoration: none;">
+            <a href="#sixth" style="text-decoration: none;">
                 <div class="header_button">Оставить заявку на консультацию</div>
             </a>
             <!-- </div> -->

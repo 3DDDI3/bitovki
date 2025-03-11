@@ -9,7 +9,7 @@
                 </div>
             </div>
             <div class="IP" style="text-decoration: none;">Индивидуальный предприниматель</br> ИНН
-                {{ $setting->inn }}<span class="span_footer">ОГРН {{ $setting->ogrn }}</span></div>
+                {{ $setting->inn }} <span class="span_footer">ОГРН {{ $setting->ogrn }}</span></div>
             <div class="footer_contacts">
                 <div class="phone">
                     <img src="{{ asset('images/whatsapp-color-svgrepo-com 1.png') }}" class="phone_img">
@@ -40,7 +40,7 @@
             </div>
             <div class="copyright">Все права защищены</div>
             <div class="politic">Политика конфиденциальности</div>
-            <div class="VT">Разработка от<span class="orange"> VisualTeam</span></div>
+            <div class="VT">Разработка от<a href="https://visualteam.ru" class="orange"> VisualTeam</a></div>
         </div>
     </div>
 </footer>

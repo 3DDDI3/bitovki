@@ -312,4 +312,16 @@ class ImageController extends Controller
             return response([], 200);
         }
     }
+
+    public function swapFiles(Request $request)
+    {
+        foreach ($request->input() as $key => $value) {
+            ItemAttachedImage::query()
+                ->find($key)
+                ->fill(['rating' => $value])
+                ->save();
+        }
+
+        return response([], 200);
+    }
 }

@@ -1,11 +1,8 @@
 <?php
 
-use App\Http\Controllers\Admin\Api\BlockController;
 use App\Http\Controllers\Admin\Api\ImageController;
-use App\Http\Controllers\Admin\Api\PersonalController;
-use App\Http\Controllers\Admin\Api\SocialNetworkController;
-use App\Http\Controllers\Api\RequestController;
-use App\Http\Controllers\MainPageController;
+use App\Http\Controllers\Admin\Api\RequestController;
+use App\Http\Controllers\CatalogController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,55 +16,28 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::prefix('blocks')
-    ->controller(BlockController::class)
-    ->group(function () {
-        Route::post('/', 'create');
-        Route::delete('/', 'delete');
-        Route::post('/change-sequence', 'changeSequence');
-        Route::patch('/swap', 'swap');
-        Route::patch('/swap-files', 'swapFiles');
-    });
-
 Route::prefix('images')
     ->controller(ImageController::class)
     ->group(function () {
         Route::post('/', 'save');
         Route::delete('/', 'delete');
-        Route::patch('/change-sequence', 'changeSequence');
-    });
+        Route::patch('/swap-files', 'swapFiles');
+    });;
 
-Route::prefix('personal')
-    ->controller(PersonalController::class)
+Route::withoutMiddleware('api')
+    ->prefix('catalog')
     ->group(function () {
-        Route::delete('/', 'detach');
-        Route::post('/', 'attach');
+        Route::get('/', [CatalogController::class, 'index']);
     });
 
 Route::withoutMiddleware('api')
     ->prefix('request')
-    ->controller(RequestController::class)
     ->group(function () {
-        Route::post('/pharmacovigilance', 'pharmacovigilance');
-        Route::post('/company', 'company');
-        Route::post('/contact', 'contact');
+        Route::post('/create', [RequestController::class, 'create']);
     });
 
-Route::prefix('main-list')->group(function () {
-    Route::post('/create', [MainPageController::class, 'create']);
-    Route::delete('/delete', [MainPageController::class, 'delete']);
-});
-
-Route::prefix('video')
-    ->controller(MainPageController::class)
+Route::withoutMiddleware('api')
+    ->prefix('service')
     ->group(function () {
-        Route::post('', 'videoAttach');
-        Route::delete('', 'videoDetach');
-    });
-
-Route::prefix('social-network')
-    ->controller(SocialNetworkController::class)
-    ->group(function () {
-        Route::post('', 'create');
-        Route::delete('', 'delete');
+        Route::get('/getImage', [CatalogController::class, 'getImage']);
     });

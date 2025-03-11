@@ -41,9 +41,10 @@
                         'value' => $object->block_1_price_subtitle ?? '',
                     ])
 
-                    <x-admin::uploader id="block_1_image" image-id="{{ $object->id }}" {{-- :width=248 header="Размер картинки 248x365" :height=365  --}}
-                        :isMultiple=false :block-type-id=null :isHidden=true :isDeletable=true :isSingle=true :page-id=null
-                        path="block_1_image_path" pathName="block_1_image_name" accept="image/*" :object="$object" />
+                    <x-admin::uploader id="block_1_image" image-id="{{ $object->id }}" header="Размер картинки 995x850"
+                        {{-- :width=248  :height=365  --}} :isMultiple=false :block-type-id=null :isHidden=true :isDeletable=true
+                        :isSingle=true :page-id=null path="block_1_image_path" pathName="block_1_image_name"
+                        accept="image/*" :object="$object" />
 
                 </x-admin::accordion-item>
 
@@ -78,9 +79,10 @@
                         'value' => $object->block_2_image_description ?? '',
                     ])
 
-                    <x-admin::uploader id="block_2_image" image-id="{{ $object->id }}" {{-- :width=248 header="Размер картинки 248x365" :height=365  --}}
-                        :isMultiple=false :block-type-id=null :isHidden=true :isDeletable=true :isSingle=true :page-id=null
-                        path="block_2_image_path" pathName="block_2_image_name" accept="image/*" :object="$object" />
+                    <x-admin::uploader id="block_2_image" image-id="{{ $object->id }}" {{-- :width=248  :height=365  --}}
+                        header="Размер картинки 810x562" :isMultiple=false :block-type-id=null :isHidden=true
+                        :isDeletable=true :isSingle=true :page-id=null path="block_2_image_path"
+                        pathName="block_2_image_name" accept="image/*" :object="$object" />
                 </x-admin::accordion-item>
 
                 <x-admin::accordion-item header="Блок 3">
@@ -108,9 +110,10 @@
                         'value' => $object->block_3_economy_value ?? '',
                     ])
 
-                    <x-admin::uploader id="block_3_image1" image-id="{{ $object->id }}" {{-- :width=248 header="Размер картинки 248x365" :height=365  --}}
-                        :isMultiple=false :block-type-id=null :isHidden=true :isDeletable=true :isSingle=true :page-id=null
-                        path="block_3_image_path" pathName="block_3_image_name" accept="image/*" :object="$object" />
+                    <x-admin::uploader id="block_3_image1" image-id="{{ $object->id }}" {{-- :width=248  :height=365  --}}
+                        header="Размер картинки 1280x960" :isMultiple=false :block-type-id=null :isHidden=true
+                        :isDeletable=true :isSingle=true :page-id=null path="block_3_image_path"
+                        pathName="block_3_image_name" accept="image/*" :object="$object" />
 
                     @include('admin.includes.textbox', [
                         'label' => 'Текст 1:',
@@ -143,8 +146,9 @@
                     ])
 
                     <x-admin::uploader id="block_3_image2" image-id="{{ $object->id }}" {{-- :width=248 header="Размер картинки 248x365" :height=365  --}}
-                        :isMultiple=false :block-type-id=null :isHidden=true :isDeletable=true :isSingle=true :page-id=null
-                        path="block_3_1_image_path" pathName="block_3_1_image_name" accept="image/*" :object="$object" />
+                        header="Размер картинки 1280x960" :isMultiple=false :block-type-id=null :isHidden=true
+                        :isDeletable=true :isSingle=true :page-id=null path="block_3_1_image_path"
+                        pathName="block_3_1_image_name" accept="image/*" :object="$object" />
 
                     @include('admin.includes.textbox', [
                         'label' => 'Текст 2:',
@@ -167,8 +171,9 @@
                     ])
 
                     <x-admin::uploader id="block_4_image1" image-id="{{ $object->id }}" {{-- :width=248 header="Размер картинки 248x365" :height=365  --}}
-                        :isMultiple=false :block-type-id=null :isHidden=true :isDeletable=true :isSingle=true :page-id=null
-                        path="block_4_image1_path" pathName="block_4_image1_name" accept="image/*" :object="$object" />
+                        header="Размер картинки 570x450" :isMultiple=false :block-type-id=null :isHidden=true
+                        :isDeletable=true :isSingle=true :page-id=null path="block_4_image1_path"
+                        pathName="block_4_image1_name" accept="image/*" :object="$object" />
 
                     @include('admin.includes.input', [
                         'label' => 'Надпись под изображением 1:',
@@ -176,8 +181,9 @@
                         'value' => $object->block_4_image1_description ?? '',
                     ])
                     <x-admin::uploader id="block_4_image2" image-id="{{ $object->id }}" {{-- :width=248 header="Размер картинки 248x365" :height=365  --}}
-                        :isMultiple=false :block-type-id=null :isHidden=true :isDeletable=true :isSingle=true :page-id=null
-                        path="block_4_image2_path" pathName="block_4_image2_name" accept="image/*" :object="$object" />
+                        header="Размер картинки 570x450" :isMultiple=false :block-type-id=null :isHidden=true
+                        :isDeletable=true :isSingle=true :page-id=null path="block_4_image2_path"
+                        pathName="block_4_image2_name" accept="image/*" :object="$object" />
 
                     @include('admin.includes.input', [
                         'label' => 'Надпись под изображением 2:',

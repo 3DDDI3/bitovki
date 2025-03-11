@@ -52,7 +52,7 @@ class UsersController extends Controller
         $select = UserСlass::all();
         $select_label = 'Класс пользователя:';
 
-        return view('admin.modules.users.users.index', compact('objects', 'path', 'title', 'select', 'select_label'));
+        return view('admin.modules.services.users.index', compact('objects', 'path', 'title', 'select', 'select_label'));
     }
 
     public function edit(Request $request, $id = null)
@@ -127,7 +127,7 @@ class UsersController extends Controller
         $object = self::phone_break($object);
 
         return view(
-            'admin.modules.users.users.edit',
+            'admin.modules.services.users.edit',
             compact(
                 'path',
                 'title',
@@ -155,7 +155,7 @@ class UsersController extends Controller
                     $object->email = 'email' . $object->id;
                     $object->save();
                 }
-                return redirect()->route('admin.users.users.edit', ['id' => $object->id])->with('message_' . $field, 'Пользователь с таким ' . $text . ' уже существует: <strong>' . $value . '</strong>');
+                return redirect()->route('admin.services.users.edit', ['id' => $object->id])->with('message_' . $field, 'Пользователь с таким ' . $text . ' уже существует: <strong>' . $value . '</strong>');
             }
         }
         return;

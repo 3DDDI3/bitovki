@@ -29,15 +29,20 @@ $(document).ready(function () {
         colorsName: [
             ['Orange', 'White', 'Black'],
         ],
-        styleTags: [
-            { title: 'Заголовок 1', tag: 'h1', className: 'progect__title', value: 'h1' },
-            { title: 'Заголовок 2', tag: 'h2', className: 'progect__sub-title', value: 'h2' },
-            { title: 'Заголовок 3', tag: 'h3', className: 'title-desc', value: 'h3' },
-            { title: 'Заголовок 3_над списком', tag: 'h3', className: '  farm-service__title title-desc', value: 'h3' },
-            { title: 'Текст', tag: 'p', className: 'item-text', value: 'p' },
-            { title: 'Текст_альт', tag: 'p', className: 'supervision__desc', value: 'p' },
-        ],
+        // styleTags: [
+        //     { title: 'Заголовок 1', tag: 'h1', className: 'progect__title', value: 'h1' },
+        //     { title: 'Заголовок 2', tag: 'h2', className: 'progect__sub-title', value: 'h2' },
+        //     { title: 'Заголовок 3', tag: 'h3', className: 'title-desc', value: 'h3' },
+        //     { title: 'Заголовок 3_над списком', tag: 'h3', className: '  farm-service__title title-desc', value: 'h3' },
+        //     { title: 'Текст', tag: 'p', className: 'item-text', value: 'p' },
+        //     { title: 'Текст_альт', tag: 'p', className: 'supervision__desc', value: 'p' },
+        // ],
         callbacks: {
+            onImageUpload: function (files) {
+                for (let i = 0; i < files.length; i++) {
+                    $.upload(files[i], $(this));
+                }
+            },
             onPaste: function (e) {
                 var bufferHTML = (e.originalEvent || e).clipboardData.getData('text/html');
 
@@ -130,6 +135,11 @@ $(document).ready(function () {
             { title: 'Текст_жирный', tag: 'p', className: 'seven_block_option_text_bold', value: 'p' },
         ],
         callbacks: {
+            onImageUpload: function (files) {
+                for (let i = 0; i < files.length; i++) {
+                    $.upload(files[i], $(this));
+                }
+            },
             onPaste: function (e) {
                 var bufferHTML = (e.originalEvent || e).clipboardData.getData('text/html');
 

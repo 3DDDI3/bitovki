@@ -2,7 +2,7 @@
 @section('content')
     <h1>{{ $title[0] }}</h1>
 
-    @include('admin.includes.search')
+    @include('admin.includes.search', ['search_label' => 'Введите текст'])
     @include('admin.includes.add')
 
     @if ($objects)
@@ -11,20 +11,26 @@
             <div
                 style="
             display: flex; 
+            column-gap:10px;
             padding: 14px 30px; 
             background-color:#212121;
             color: #ffffff">
-                <p style="flex-basis: 30%;">№</p>
+                <p style="flex-basis: 10%;">№</p>
+                <p style="flex-basis: 20%;">Изображение</p>
                 <p style="flex-basis: 50%;">Текст</p>
-                <p style="flex-grow:1;"></p>
+                <p style="flex-basis: 20%;"></p>
             </div>
             @foreach ($objects as $object)
-                <div class="list_item">
-                    <div class="list_item-info" style="flex-basis: 30%">
-                        <h4> {{ $object->number }}</h4>
+                <div class="list_item" style="column-gap: 10px">
+                    <div class="list_item-info" style="flex-basis: 10%">
+                        <h4> {{ $object->id }}</h4>
+                    </div>
+                    <div style="flex-basis: 20%;">
+                        <img style="width: 100%" src="{{ asset('media/' . $object->image_path) }}" alt=""
+                            srcset="">
                     </div>
                     <div style="flex-basis: 50%;"> {!! $object->text !!}</div>
-                    <div style="flex-grow:1;" class="list_item-actions">
+                    <div style="flex-basis: 20%;" class="list_item-actions">
                         @include('admin.includes.sortable.rating')
                         @include('admin.includes.actions.show')
                         @include('admin.includes.actions.edit')

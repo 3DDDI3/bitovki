@@ -21,6 +21,9 @@
     <link rel='stylesheet' href='/private/src/css/main.css?v={{ sha1_file(public_path('/private/src/css/main.css')) }}'>
     <link rel='stylesheet'
         href='/private/src/css/local.css?v={{ sha1_file(public_path('/private/src/css/local.css')) }}'>
+
+    <link rel='stylesheet'
+        href='/private/src/css/editor.css?v={{ sha1_file(public_path('/private/src/css/editor.css')) }}'>
     <link rel='stylesheet'
         href='/private/src/css/chosen.css?v={{ sha1_file(public_path('/private/src/css/chosen.css')) }}'>
     <link rel='stylesheet'

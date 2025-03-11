@@ -20,7 +20,8 @@ class AdditionalOptionController extends Controller
 
         if ($request->search)
             $objects = AdditionalOption::query()
-                ->where("title", "LIKE", "%" . str_replace(' ', '%', $request->search) . "%")
+                ->where("text", "LIKE", "%" . str_replace(' ', '%', $request->search) . "%")
+                ->orWhere(['id' => $request->search])
                 ->paginate(10);
 
         if ($id = $request->delete) {

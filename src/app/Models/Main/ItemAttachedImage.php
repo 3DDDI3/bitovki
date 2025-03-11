@@ -14,5 +14,6 @@ class ItemAttachedImage extends Model
     protected $fillable = [
         'image_path',
         'image_name',
+        'rating',
     ];
 }

@@ -1,0 +1,40 @@
+.seven_block_option_description {
+    font-family: "Lato";
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 20.96px;
+    letter-spacing: 0%;
+    color: rgba(121, 121, 121, 1);
+    max-width: 530px;
+    margin-top: 10px;
+}
+
+.seven_block_option_title {
+    font-family: "Lato";
+    font-weight: 800;
+    font-size: 30px;
+    line-height: 36px;
+    letter-spacing: 0%;
+    color: rgba(38, 41, 48, 1);
+    margin-top: 15px;
+}
+
+.seven_block_option_text {
+    font-family: "Lato";
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 26.2px;
+    letter-spacing: 0%;
+    margin-top: 25px;
+    max-width: 800px;
+}
+
+.seven_block_option_text_bold {
+    font-family: "Lato";
+    font-weight: 800;
+    font-size: 20px;
+    line-height: 26.2px;
+    letter-spacing: 0%;
+    margin-top: 25px;
+    max-width: 800px;
+}
