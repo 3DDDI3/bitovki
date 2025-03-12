@@ -31,8 +31,9 @@ class IndexController extends Controller
         $informations = Information::query()
             ->where(['hide' => 0])
             ->orderBy('id')
-            ->get()
-            ->split(2);
+            ->get();
+
+        $informations = $informations->split(round($informations->count() / 2));
 
         $variants = Variant::query()
             ->where(['hide' => 0])

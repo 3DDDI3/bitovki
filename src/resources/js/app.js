@@ -3,6 +3,7 @@ import 'slick-carousel';
 import Inputmask from "inputmask";
 
 window.$ = $;
+window.jquery = $;
 
 
 $(document).ready(function () {
@@ -56,7 +57,7 @@ $(".multiple-reviews").slick({
       }
     },
     {
-      breakpoint: 850,
+      breakpoint: 750,
       settings: {
         slidesToShow: 1,
         slidesToScroll: 1,
@@ -91,7 +92,8 @@ if ($(window).width() >= 1024) {
         settings: {
           slidesToShow: 2,
           slidesToScroll: 2,
-          centerMode: true,
+          infinite: false,
+          // centerMode: true,
         }
       },
       {
@@ -153,8 +155,6 @@ $(".catalog_button").click(function () {
       $(".catalog_button").css({ "display": "none" });
       $(".catalog_button_hidden").css({ "display": "block" });
 
-      console.log($(".catalog_card_hidden .catalog_card .slider"));
-
       $('.catalog_card_hidden .catalog_card .slider').slick({
         dots: true,
         infinite: true,
@@ -198,9 +198,11 @@ $(".burger_menu_show").click(function () {
     "overflow-y": "auto",
     "position": "fixed",
     "z-index": "100",
-    "inset": "0"
+    "inset": "0",
+    "height": "100%"
   })
 });
+
 $(".burger_menu_hidden").click(function () {
   $(".burger_menu_list").css({ "display": "none" });
   $(".burger_menu_show").css({ "display": "block" });
@@ -216,9 +218,33 @@ $(".burger_menu_hidden").click(function () {
     "overflow-y": "hidden",
     "position": "unset",
     "z-index": "unset",
-    "inset": "unset"
+    "inset": "unset",
+    "height": "revert-layer",
   })
 });
+
+
+$(".burger_button").on("click", function () {
+  $(".burger_menu_list").css({ "display": "none" });
+  $(".burger_menu_show").css({ "display": "block" });
+  $(".burger_menu_hidden").css({ "display": "none" });
+  $(".header_background").css({ "background": "url('uploads/ea665377d8e1fae87c98bb9b0f0b88f8.jfif')" });
+  $(".menu").css({ "background": "none" });
+  $("header").css({ "overflow": "hidden" });
+  $(".header_background").css({ "transform": "scale(1.2)" });
+  $(".header_background").css({ "filter": "blur(25px)" });
+
+  $("body").css({ "overflow": "unset" });
+  $("header").css({
+    "overflow-y": "hidden",
+    "position": "inherit",
+    "z-index": "unset",
+    "inset": "unset",
+    "height": "revert-layer",
+  })
+})
+
+
 $(".burger_link").click(function () {
   $(".burger_menu_list").css({ "display": "none" });
   $(".burger_menu_show").css({ "display": "block" });
@@ -234,7 +260,8 @@ $(".burger_link").click(function () {
     "overflow-y": "hidden",
     "position": "unset",
     "z-index": "unset",
-    "inset": "unset"
+    "inset": "unset",
+    "height": "revert-layer",
   })
 });
 

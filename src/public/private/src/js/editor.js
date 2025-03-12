@@ -132,7 +132,6 @@ $(document).ready(function () {
             { title: 'Заголовок 3', tag: 'h3', className: 'seven_block_option_title', value: 'h3' },
             { title: 'Заголовок 4', tag: 'h4', className: 'seven_block_option_description', value: 'h4' },
             { title: 'Текст', tag: 'p', className: 'seven_block_option_text', value: 'p' },
-            { title: 'Текст_жирный', tag: 'p', className: 'seven_block_option_text_bold', value: 'p' },
         ],
         callbacks: {
             onImageUpload: function (files) {
@@ -144,7 +143,7 @@ $(document).ready(function () {
                 var bufferHTML = (e.originalEvent || e).clipboardData.getData('text/html');
 
                 var cleanHTML = DOMPurify.sanitize(bufferHTML, {
-                    ALLOWED_TAGS: ['p', 'b', 'i', 'u', 'a', 'ul', 'ol', 'li'], // Разрешенные теги
+                    ALLOWED_TAGS: ['p', 'b', 'i', 'u', 'a', 'ul', 'ol', 'li', 'div'], // Разрешенные теги
                     ALLOWED_ATTR: ['href', 'target'] // Разрешенные атрибуты
                 });
 

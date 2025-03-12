@@ -97,7 +97,7 @@ input:focus::placeholder {
 }
 
 header {
-    height: 970px;
+    // height: 970px;
     position: relative;
     overflow: hidden;
 }
@@ -443,6 +443,12 @@ header {
     font-size: 60px;
     line-height: 67.8px;
     letter-spacing: 0%;
+    p {
+        font-weight: 600;
+    }
+    b {
+        font-weight: 800;
+    }
 }
 .orange {
     color: #fe8934;
@@ -910,8 +916,9 @@ header {
     letter-spacing: 0%;
     color: rgba(255, 255, 255, 1);
     text-align: center;
-    height: 35px;
-    padding-top: 10px;
+    min-height: 35px;
+    max-height: 85px;
+    padding: 10px 0;
     width: 220px;
     background-color: rgba(85, 83, 85, 1);
     margin: 0 auto;
@@ -929,7 +936,7 @@ header {
     color: rgba(255, 255, 255, 1);
     width: 170px;
     height: 35px;
-    padding-top: 10px;
+    padding: 10px 0;
     background-color: rgba(254, 137, 52, 1);
     margin: 0 auto;
     margin-top: -5%;
@@ -1410,7 +1417,7 @@ footer {
 }
 .VT {
     margin-left: 175px;
-    a{
+    a {
         text-decoration: unset;
     }
 }
@@ -1763,6 +1770,12 @@ body:has(dialog[open]) {
     height: 500px;
     width: 100%;
 }
+
+.seven_block_left {
+    .seven_block_option_text b {
+        font-weight: 800;
+    }
+}
 @media screen and (max-width: 1420px) {
     .second_block_first:last-child .last_img {
         margin-left: 0;
@@ -1890,6 +1903,9 @@ body:has(dialog[open]) {
     }
     .success_modal {
         overflow: visible;
+    }
+    header {
+        height: 980px;
     }
 
     .contact_row:nth-child(1) .sixth_contact_img {
@@ -2173,7 +2189,7 @@ body:has(dialog[open]) {
     .form {
         position: absolute;
         left: 10%;
-        margin-top: 200px;
+        margin-top: 100px;
         width: 80%;
         max-width: 500px;
         margin-left: auto;
@@ -2845,8 +2861,8 @@ body:has(dialog[open]) {
         top: 340px;
     }
     #noway {
-        max-width: 110%;
-        object-position: -35px;
+        // max-width: 110%;
+        // object-position: -35px;
     }
     .letters {
         top: 5%;
@@ -2966,7 +2982,7 @@ body:has(dialog[open]) {
         margin-left: unset;
     }
     .fivth_block_main_row {
-        justify-content: center;
+        justify-content: space-between;
         column-gap: 20px;
     }
     .fivth_block_main_number {
@@ -3006,5 +3022,35 @@ body:has(dialog[open]) {
 @media (min-width: 375px) and (max-width: 768px) {
     .block_eight_text {
         margin-right: 33px;
+    }
+}
+
+@media (min-width: 944px) and (max-width: 1024px) {
+    .fivth_block_main {
+        flex-direction: column;
+    }
+}
+
+@media (min-width: 700px) and (max-width: 1024px) {
+    .img_slide {
+        max-width: unset;
+    }
+}
+
+@media (min-width: 1110px) and (max-width: 1300px) {
+    .videos .slick-prev {
+        left: 88%;
+    }
+}
+
+@media (min-width: 1024px) and (max-width: 1109px) {
+    .videos .slick-prev {
+        left: 86%;
+    }
+}
+
+@media (min-width: 375px) and (max-width: 409px) {
+    .form {
+        margin-top: 40px;
     }
 }

@@ -43,7 +43,7 @@
 
     @include('admin.includes.menu.item', [
         'route' => 'admin.main.additional-options.index',
-        'name' => 'Дополнительные услуги',
+        'name' => 'Дополнительные опции',
         'data' => 'additional-options',
     ])
 

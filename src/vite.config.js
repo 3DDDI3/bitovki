@@ -33,7 +33,7 @@ export default defineConfig({
     plugins: [
         inject({
             $: 'jquery',
-            jQuery: 'jquery',
+            jquery: 'jquery',
         }),
         laravel({
             input: [
