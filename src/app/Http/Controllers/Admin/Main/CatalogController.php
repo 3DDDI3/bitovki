@@ -16,7 +16,9 @@ class CatalogController extends Controller
         $path = "$this->PATH";
         $title = $this->TITLE;
 
-        $objects = Item::query()->paginate(10);
+        $objects = Item::query()
+            ->orderBy('rating', 'desc')
+            ->paginate(10);
 
         if ($request->search)
             $objects = Item::query()

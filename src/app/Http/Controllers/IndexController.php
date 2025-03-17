@@ -10,6 +10,7 @@ use App\Models\Main\Page;
 use App\Models\Main\QA;
 use App\Models\Main\Review;
 use App\Models\Main\Variant;
+use App\Models\Setting;
 use Illuminate\Http\Request;
 
 class IndexController extends Controller
@@ -55,6 +56,8 @@ class IndexController extends Controller
             ->orderBy('rating', 'desc')
             ->paginate(5);
 
+        $setting = Setting::query()->find(1);
+
         return view('pages.index', [
             'page' => $page,
             'additionalOptions' => $additionalOptions,
@@ -64,6 +67,7 @@ class IndexController extends Controller
             'ourWorks' => $ourWorks,
             'qa' => $qa,
             'items' => $items,
+            'setting' => $setting,
         ]);
     }
 }

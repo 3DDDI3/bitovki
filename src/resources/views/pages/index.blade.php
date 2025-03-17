@@ -215,17 +215,18 @@
                             <div class="contact_row">
                                 <div class="sixth_contact_img_block"><img class="sixth_contact_img"
                                         src="{{ asset('images/Group2.png') }}"></div>
-                                <div class="contact_text">+7 (495) 146-84-84</div>
+                                <a href="tel:{{ preg_replace('/[\s\(\)\-]/', '', $setting->phone) }}"
+                                    class="contact_text">{{ $setting->phone }}</a>
                             </div>
                             <div class="contact_row">
                                 <div class="sixth_contact_img_block"><img class="sixth_contact_img"
                                         src="{{ asset('images/Group 6.png') }}"></div>
-                                <div class="contact_text">info@module.ru</div>
+                                <a href="mailto:{{ $setting->email }}" class="contact_text">{{ $setting->email }}</a>
                             </div>
                             <div class="contact_row">
                                 <div class="sixth_contact_img_block"><img class="sixth_contact_img"
                                         src="{{ asset('images/address.png') }}"></div>
-                                <div class="contact_text">г. Москва, Хлебозаводский проезд д. 7, стр. 9</div>
+                                <div class="contact_text">{{ $setting->address }}</div>
                             </div>
                             <div class="contact_under_text" id="back">Если хотите приехать - договаривайтесь с
                                 бригадиром о встрече, потому что бригады часто работают на выезде и цех бывает закрыт (номер

@@ -12,9 +12,11 @@
             <img class="contact_img" src="{{ asset('images/whatsapp-color-svgrepo-com 1.png') }}">
             <a class="phone_number" href="tel:{{ preg_replace('/[\s\(\)\-]/', '', $setting->phone) }}"
                 style="text-decoration: none;">{{ $setting->phone }}</a>
-            <div class="email" style="text-decoration: none;">{{ $page->email }}</div>
-            <a href="#sixth" style="text-decoration: none;">
+            <a href="mailto:{{ $page->email }}" class="email" style="text-decoration: none;">{{ $page->email }}</a>
+            <a href="#sixth" class="fullbutton" style="text-decoration: none; flex-grow: 1; justify-items: end;">
                 <div class="header_button">Оставить заявку на консультацию</div>
+            </a>
+            <a class="litebutton" style="text-decoration: none; flex-grow: 1; justify-items: end;">
             </a>
             <!-- </div> -->
             <div class="burger_menu">
@@ -36,8 +38,9 @@
                         href="#mes">Отзывы</a></li>
                 <li class="burger_menu_li"><a class="burger_link" style="text-decoration: none; color: inherit;"
                         href="#fivth">Как купить?</a></li>
-                <li class="burger_menu_li"><a class="burger_link" style="text-decoration: none; color: inherit;"
-                        href="#sixth">Где мы находимся</br>и где можно посмотреть?</a></li>
+                <li class="burger_menu_li"><a class="burger_link"
+                        style="text-decoration: none; color: inherit; flex-grow:1" href="#sixth">Где мы находимся</br>и
+                        где можно посмотреть?</a></li>
                 <li class="burger_menu_li"><a class="burger_link" style="text-decoration: none; color: inherit;"
                         href="#seven">На что ставить хозблок?</a></li>
                 <li class="burger_menu_li"><a class="burger_link" style="text-decoration: none; color: inherit;"
@@ -84,15 +87,19 @@
             </ul>
             <div class="left_block">
                 <div class="main_text">{{ $page->block_1_title }}</div>
-                <div class="under_text">{{ $page->block_1_subtitle }}</div>
+                <div class="under_text">{!! $page->block_1_subtitle !!}</div>
                 <div class="price_text">{{ $page->block_1_price_title }}</div>
-                <div class="price_form">{{ number_format($page->block_1_price_value, 0, '', ' ') }} <img
-                        src="{{ asset('images/ruble.svg') }}" class="ruble">
-                </div>
-                <div class="under_price">
-                    <div class="star">*</div>
-                    <div class="right_star">{{ $page->block_1_price_subtitle }}</div>
-                </div>
+                @if ($page->block_1_price_value > 0)
+                    <div class="price_form">{{ number_format($page->block_1_price_value, 0, '', ' ') }} <img
+                            src="{{ asset('images/ruble.svg') }}" class="ruble">
+                    </div>
+                @endif
+                @if (!empty($page->block_1_price_subtitle))
+                    <div class="under_price">
+                        <div class="star">*</div>
+                        <div class="right_star">{{ $page->block_1_price_subtitle }}</div>
+                    </div>
+                @endif
                 <form>
                     <div class="form">
                         <div class="circle"></div>
@@ -114,7 +121,7 @@
                             <div class="advantages_element">
                                 <img src="{{ asset('media/' . $infographic->image_path) }}"
                                     class="advantages_element_img">
-                                <div class="advantages_element_text">{{ $infographic->title }}</div>
+                                <div class="advantages_element_text">{!! $infographic->title !!}</div>
                             </div>
                         @endforeach
                     </div>

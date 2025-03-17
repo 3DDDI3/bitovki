@@ -22,6 +22,8 @@
     <script type="text/javascript" src="{{ asset('lib/maskinput.js') }}"></script> --}}
 
     @vite(['resources/scss/app.scss', 'resources/js/app.js'])
+    {{-- <link rel="stylesheet" href="/css/app.css"> --}}
+    <script src=""></script>
 
     {{-- {!! $seo->buildGenerates() !!} --}}
 </head>
