@@ -54,7 +54,7 @@ class IndexController extends Controller
         $items = Item::query()
             ->where(['hide' => 0])
             ->orderBy('rating', 'desc')
-            ->paginate(5);
+            ->paginate(3);
 
         $setting = Setting::query()->find(1);
 

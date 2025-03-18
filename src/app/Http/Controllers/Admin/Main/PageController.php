@@ -76,7 +76,9 @@ class PageController extends Controller
                 'block_4_image1_path',
                 'block_4_image1_description',
                 'block_4_image2_path',
-                'block_4_image2_description'
+                'block_4_image2_description',
+                'block_5_title',
+                'block_5_text',
             ]));
 
             $object->block_1_price_value = floatval(preg_replace("/\s/", "", $request->block_1_price_value));

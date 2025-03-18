@@ -16,5 +16,6 @@ class ItemSpec extends Model
         'area',
         'building_area',
         'length',
+        'sizes',
     ];
 }

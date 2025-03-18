@@ -10,7 +10,7 @@ class CatalogController extends Controller
 {
     public function index(Request $request)
     {
-        $items = Item::query()->orderBy('rating', 'desc')->paginate(5);
+        $items = Item::query()->orderBy('rating', 'desc')->paginate(3);
 
         $catalogItem = new CatalogItem();
 

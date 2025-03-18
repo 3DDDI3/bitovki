@@ -21,81 +21,33 @@ $(document).ready(function () {
   }).mask('.input_modal.first');
 })
 
-$(".single-item").slick({
-  dots: true,
-  infinite: true,
-  speed: 500,
-  slidesToShow: 1,
-  slidesToScroll: 1,
-  responsive: [
-  ]
-});
-
-
-$(".multiple-reviews").slick({
-  dots: true,
-  infinite: true,
-  speed: 500,
-  slidesToShow: 4,
-  slidesToScroll: 4,
-  centerMode: true,
-  responsive: [
-    {
-      breakpoint: 1300,
-      settings: {
-        slidesToShow: 3,
-        slidesToScroll: 3,
-        infinite: true,
-        centerMode: true,
-        dots: true
-      }
-    },
-    {
-      breakpoint: 1050,
-      settings: {
-        slidesToShow: 2,
-        slidesToScroll: 2,
-        centerMode: true,
-      }
-    },
-    {
-      breakpoint: 650,
-      settings: {
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        // infinite: false,
-        centerMode: true,
-        // dots: true
-      },
-    },
-    {
-      breakpoint: 375,
-      settings: {
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        // infinite: false,
-        centerMode: true,
-        // dots: true
-      },
-    },
-  ]
-});
-
-if ($(window).width() >= 1024) {
-  $(".multiple-items").slick({
+try {
+  $(".single-item").slick({
     dots: true,
     infinite: true,
     speed: 500,
-    slidesToShow: 2,
-    slidesToScroll: 2,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    responsive: [
+    ]
+  });
+
+
+  $(".multiple-reviews").slick({
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 4,
+    slidesToScroll: 4,
+    centerMode: true,
     responsive: [
       {
         breakpoint: 1300,
         settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2,
+          slidesToShow: 3,
+          slidesToScroll: 3,
           infinite: true,
-          // centerMode: true,
+          centerMode: true,
           dots: true
         }
       },
@@ -104,8 +56,7 @@ if ($(window).width() >= 1024) {
         settings: {
           slidesToShow: 2,
           slidesToScroll: 2,
-          infinite: false,
-          // centerMode: true,
+          centerMode: true,
         }
       },
       {
@@ -113,24 +64,77 @@ if ($(window).width() >= 1024) {
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
-          infinite: false,
+          // infinite: false,
           centerMode: true,
-          dots: true
-        }
+          // dots: true
+        },
+      },
+      {
+        breakpoint: 375,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          // infinite: false,
+          centerMode: true,
+          // dots: true
+        },
       },
     ]
-  })
-};
+  });
 
-if ($(window).width() <= 1024) {
-  $(".multiple-items").slick({
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1
-  })
-};
+  if ($(window).width() >= 1024) {
+    $(".multiple-items").slick({
+      dots: true,
+      infinite: true,
+      speed: 500,
+      slidesToShow: 2,
+      slidesToScroll: 2,
+      responsive: [
+        {
+          breakpoint: 1300,
+          settings: {
+            slidesToShow: 2,
+            slidesToScroll: 2,
+            infinite: true,
+            // centerMode: true,
+            dots: true
+          }
+        },
+        {
+          breakpoint: 1050,
+          settings: {
+            slidesToShow: 2,
+            slidesToScroll: 2,
+            infinite: false,
+            // centerMode: true,
+          }
+        },
+        {
+          breakpoint: 650,
+          settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            infinite: false,
+            centerMode: true,
+            dots: true
+          }
+        },
+      ]
+    })
+  };
+
+  if ($(window).width() <= 1024) {
+    $(".multiple-items").slick({
+      dots: true,
+      infinite: true,
+      speed: 500,
+      slidesToShow: 1,
+      slidesToScroll: 1
+    })
+  };
+} catch (error) {
+
+}
 
 $(".button_hidden_text").click(function () {
   $(this).parents(".block_eight_element").find(".block_eight_hidden_text").css({ "display": "block" });

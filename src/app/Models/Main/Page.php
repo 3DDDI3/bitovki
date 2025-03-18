@@ -42,5 +42,7 @@ class Page extends Model
         'block_4_image1_description',
         'block_4_image2_path',
         'block_4_image2_description',
+        'block_5_title',
+        'block_5_text',
     ];
 }

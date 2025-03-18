@@ -19,14 +19,30 @@
                         <div class="line"></div>
                     </div>
                     <div class="first_block_main">
-                        <div class="first_block_left">
-                            {!! $page->block_2_text1 !!}
-                        </div>
-                        <div class="first_block_right">
-                            {!! $page->block_2_text2 !!}
-                        </div>
+                        @if (!empty($page->block_2_text1) || !empty($page->block_2_text2))
+                            <div class="first_block_left">
+                                {!! $page->block_2_text1 !!}
+                            </div>
+                            <div class="first_block_right">
+                                {!! $page->block_2_text2 !!}
+                            </div>
+                        @endif
+                    </div>
+                    <div class="first_block_main-1">
+                        <img src="{{ asset('images/complect1.png') }}" alt="">
+                        <img src="{{ asset('images/complect2.png') }}" alt="">
                     </div>
                 </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="first_block_header">
+                <div class="first_block_text">
+                    <div class="first_block_main_text first_block_main_text_alt">{!! $page->block_5_title !!}</div>
+                </div>
+            </div>
+            <div class="first_block_main first_block_main_alt">
+                {!! $page->block_5_text !!}
             </div>
         </div>
         <div class="catalog" id="catalog">
@@ -35,17 +51,11 @@
                 @foreach ($items as $item)
                     <x-catalog-item class="single-item" :$item />
                 @endforeach
-                <div class="catalog_card_hidden">
-                    {{-- @foreach ($items as $item)
-                        <x-catalog-item :$item />
-                    @endforeach --}}
-                </div>
                 <div class="catalog_btn">
                     <button type="button" data-page="{{ empty(request()->page) ? 1 : request()->page }}"
                         class="catalog_button">Показать ещё</button>
                     <button type="button" class="catalog_button_hidden">Скрыть</button>
                 </div>
-                <!-- <a style="text-decoration: none;" class="catalog_btn"><div >Показать ещё</div></a> -->
             </div>
         </div>
         </div>

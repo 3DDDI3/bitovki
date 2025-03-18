@@ -64,7 +64,8 @@
                         </div>
                         <div class="burger_contacts_row"><img src="{{ asset('images/Group 6.png') }}"
                                 style="width: 20px;height: 14px;" class="burger_contacts_img">
-                            <div class="burger_contacts_text">info@module.ru</div>
+                            <a class="burger_contacts_text"
+                                href="mailto:{{ $setting->email }}">{{ $setting->email }}</a>
                         </div>
                         <div class="burger_contacts_row"><img src="{{ asset('images/address.png') }}"
                                 style="width: 14px;height: 20px;" class="burger_contacts_img">

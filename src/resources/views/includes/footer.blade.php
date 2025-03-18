@@ -13,11 +13,10 @@
             <div class="footer_contacts">
                 <div class="phone">
                     <img src="{{ asset('images/whatsapp-color-svgrepo-com 1.png') }}" class="phone_img">
-                    <a href="tel:{{ preg_replace('/[\s\(\)\-]/', '', $setting->phone) }}" class="phone_number_footer"
-                        style="text-decoration: none;">{{ $setting->phone }}</a>
+                    <a href="tel:{{ preg_replace('/[\s\(\)\-]/', '', $setting->phone) }}"
+                        class="phone_number_footer">{{ $setting->phone }}</a>
                 </div>
-                <a href="mailto:{{ $setting->email }}" class="footer_email"
-                    style="text-decoration: none;">{{ $setting->email }}</a>
+                <a href="mailto:{{ $setting->email }}" class="footer_email">{{ $setting->email }}</a>
             </div>
             <div class="footer_buttons">
                 <a href="#sixth" style="text-decoration: none;">
@@ -30,7 +29,7 @@
                 </a>
             </div>
             <a href="#sixth" style="text-decoration: none;">
-                <div class="header_button" style="margin-left: 90px; margin-top: 6px;">Оставить заявку на консультацию
+                <div class="header_button" style="margin-top: 6px;">Оставить заявку на консультацию
                 </div>
             </a>
             <div class="footer_line"></div>

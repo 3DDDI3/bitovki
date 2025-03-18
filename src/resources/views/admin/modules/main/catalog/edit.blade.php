@@ -35,6 +35,11 @@
 
                 <x-admin::accordion-item header="Характеристики товара">
                     @include('admin.includes.input', [
+                        'label' => 'Размеры:',
+                        'name' => 'sizes',
+                        'value' => $object->specs->sizes ?? '',
+                    ])
+                    {{-- @include('admin.includes.input', [
                         'label' => 'Площадь, м2:',
                         'name' => 'area',
                         'value' => $object->specs->area ?? '',
@@ -56,27 +61,27 @@
                         'label' => 'Длина, м2:',
                         'name' => 'length',
                         'value' => $object->specs->length ?? '',
-                    ])
+                    ]) --}}
                 </x-admin::accordion-item>
 
                 <x-admin::accordion-item header="Информация о цене и рассрочке">
-                    @include('admin.includes.input', [
+                    {{-- @include('admin.includes.input', [
                         'label' => 'Старая цена:',
                         'name' => 'old_price',
                         'value' => !empty($object->old_price)
                             ? number_format($object->old_price, 2, '.', ' ')
                             : null,
-                    ])
+                    ]) --}}
 
                     @include('admin.includes.input', [
-                        'label' => 'Новая цена:',
+                        'label' => 'Цена:',
                         'name' => 'new_price',
                         'value' => !empty($object->new_price)
                             ? number_format($object->new_price, 2, '.', ' ')
                             : '',
                     ])
 
-                    @include('admin.includes.input', [
+                    {{-- @include('admin.includes.input', [
                         'label' => 'Ежемесячная оплата:',
                         'name' => 'monthly_payment',
                         'value' => !empty($object->monthly_payment)
@@ -88,7 +93,7 @@
                         'label' => 'Кол-во месяцев',
                         'name' => 'month_count',
                         'value' => $object->month_count ?? '',
-                    ])
+                    ]) --}}
                 </x-admin::accordion-item>
             </x-admin::accordion>
 

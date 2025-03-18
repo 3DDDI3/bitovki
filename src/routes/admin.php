@@ -53,7 +53,7 @@ Route::prefix('admin')
                     ->name('pages.')
                     ->group(function () {
                         Route::get('/', [PageController::class, 'index'])->name('index');
-                        Route::match(['get', 'post'], '/edit{id?}', [PageController::class, 'edit'])->name('edit');
+                        Route::match(['get', 'post'], '/edit/{id?}', [PageController::class, 'edit'])->name('edit');
                     });
 
                 Route::prefix('qa')
@@ -67,7 +67,7 @@ Route::prefix('admin')
                     ->name('our-works.')
                     ->group(function () {
                         Route::get('/', [OurWorkController::class, 'index'])->name('index');
-                        Route::match(['get', 'post'], '/edit{id?}', [OurWorkController::class, 'edit'])->name('edit');
+                        Route::match(['get', 'post'], '/edit/{id?}', [OurWorkController::class, 'edit'])->name('edit');
                     });
 
                 Route::prefix('variants')
@@ -88,28 +88,28 @@ Route::prefix('admin')
                     ->name('informations.')
                     ->group(function () {
                         Route::get('/', [InformationController::class, 'index'])->name('index');
-                        Route::match(['get', 'post'], '/edit{id?}', [InformationController::class, 'edit'])->name('edit');
+                        Route::match(['get', 'post'], '/edit/{id?}', [InformationController::class, 'edit'])->name('edit');
                     });
 
                 Route::prefix('catalog')
                     ->name('catalog.')
                     ->group(function () {
                         Route::get('/', [CatalogController::class, 'index'])->name('index');
-                        Route::match(['get', 'post'], '/edit{id?}', [CatalogController::class, 'edit'])->name('edit');
+                        Route::match(['get', 'post'], '/edit/{id?}', [CatalogController::class, 'edit'])->name('edit');
                     });
 
                 Route::prefix('additional-options')
                     ->name('additional-options.')
                     ->group(function () {
                         Route::get('/', [AdditionalOptionController::class, 'index'])->name('index');
-                        Route::match(['get', 'post'], '/edit{id?}', [AdditionalOptionController::class, 'edit'])->name('edit');
+                        Route::match(['get', 'post'], '/edit/{id?}', [AdditionalOptionController::class, 'edit'])->name('edit');
                     });
 
                 Route::prefix('infographics')
                     ->name('infographics.')
                     ->group(function () {
                         Route::get('/', [InfographicController::class, 'index'])->name('index');
-                        Route::match(['get', 'post'], '/edit{id?}', [InfographicController::class, 'edit'])->name('edit');
+                        Route::match(['get', 'post'], '/edit/{id?}', [InfographicController::class, 'edit'])->name('edit');
                     });
             });
 

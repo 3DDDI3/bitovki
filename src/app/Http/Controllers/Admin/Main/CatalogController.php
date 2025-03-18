@@ -65,6 +65,7 @@ class CatalogController extends Controller
                     'area' => !empty($request->area) ?  floatval($request->area) : null,
                     'building_area' => !empty($request->building_area) ?  floatval($request->building_area) : null,
                     'length' => !empty($request->length) ? floatval($request->length) : null,
+                    'sizes' => $request->sizes,
                 ])->save();
             } else {
                 $object->specs()->create([
@@ -72,6 +73,7 @@ class CatalogController extends Controller
                     'area' => !empty($request->area) ?  floatval($request->area) : null,
                     'building_area' => !empty($request->building_area) ?  floatval($request->building_area) : null,
                     'length' => !empty($request->length) ? floatval($request->length) : null,
+                    'sizes' => $request->sizes,
                 ]);
             }
 

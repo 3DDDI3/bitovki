@@ -17,7 +17,7 @@
                         'value' => $object->block_1_title ?? '',
                     ])
 
-                    @include('admin.includes.input', [
+                    @include('admin.includes.textbox', [
                         'label' => 'Подзаголовок:',
                         'name' => 'block_1_subtitle',
                         'value' => $object->block_1_subtitle ?? '',
@@ -32,7 +32,10 @@
                     @include('admin.includes.input', [
                         'label' => 'Цена:',
                         'name' => 'block_1_price_value',
-                        'value' => number_format($object->block_1_price_value, 2, '.', ' ') ?? '',
+                        'value' =>
+                            $object->block_1_price_value > 0
+                                ? number_format($object->block_1_price_value, 2, '.', ' ')
+                                : '',
                     ])
 
                     @include('admin.includes.input', [
@@ -86,6 +89,20 @@
                 </x-admin::accordion-item>
 
                 <x-admin::accordion-item header="Блок 3">
+                    @include('admin.includes.textbox', [
+                        'label' => 'Заголовок:',
+                        'name' => 'block_5_title',
+                        'value' => $object->block_5_title ?? '',
+                    ])
+
+                    @include('admin.includes.textbox', [
+                        'label' => 'Текст:',
+                        'name' => 'block_5_text',
+                        'value' => $object->block_5_text ?? '',
+                    ])
+                </x-admin::accordion-item>
+
+                <x-admin::accordion-item header="Блок 4">
                     @include('admin.includes.textbox', [
                         'label' => 'Заголовок 1:',
                         'name' => 'block_3_title',
@@ -157,7 +174,7 @@
                     ])
                 </x-admin::accordion-item>
 
-                <x-admin::accordion-item header="Блок 4">
+                <x-admin::accordion-item header="Блок 5">
                     @include('admin.includes.textbox', [
                         'label' => 'Заголовок:',
                         'name' => 'block_4_title',

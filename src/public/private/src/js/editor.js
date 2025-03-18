@@ -63,7 +63,10 @@ $(document).ready(function () {
 
                 // var updatedHTML = tempDiv.innerHTML;
 
-                let updatedHTML = cleanHTML;
+                // console.log(cleanHTML.replace(/^\<.\>&nbsp;|&nbsp;\<\/.\>$/g, ''));
+
+
+                let updatedHTML = cleanHTML.trim();
 
                 e.preventDefault();
                 document.execCommand('insertHTML', false, updatedHTML);
