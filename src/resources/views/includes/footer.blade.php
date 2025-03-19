@@ -8,7 +8,7 @@
                     <div class="company_text">Строительная компания</div>
                 </div>
             </div>
-            <div class="IP" style="text-decoration: none;">Индивидуальный предприниматель</br> ИНН
+            <div class="IP">Индивидуальный предприниматель</br> ИНН
                 {{ $setting->inn }} <span class="span_footer">ОГРН {{ $setting->ogrn }}</span></div>
             <div class="footer_contacts">
                 <div class="phone">
@@ -19,16 +19,14 @@
                 <a href="mailto:{{ $setting->email }}" class="footer_email">{{ $setting->email }}</a>
             </div>
             <div class="footer_buttons">
-                <a href="#sixth" style="text-decoration: none;">
+                <a href="#sixth">
                     <div class="footer_button">Оставить заявку на консультацию</div>
                 </a>
-                <a href="#sixth" style="text-decoration: none;">
-                    <div class="footer_button"
-                        style="border: 2px solid rgba(60, 60, 60, 1); background-color: rgba(60, 60, 60, 1);">Где мы
-                        находимся</div>
+                <a href="#sixth">
+                    <div class="footer_button">Где мы находимся</div>
                 </a>
             </div>
-            <a href="#sixth" style="text-decoration: none;">
+            <a href="#sixth">
                 <div class="header_button" style="margin-top: 6px;">Оставить заявку на консультацию
                 </div>
             </a>

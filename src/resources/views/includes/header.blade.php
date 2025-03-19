@@ -10,13 +10,13 @@
             </div>
             <!-- <div class="casual_menu"> -->
             <img class="contact_img" src="{{ asset('images/whatsapp-color-svgrepo-com 1.png') }}">
-            <a class="phone_number" href="tel:{{ preg_replace('/[\s\(\)\-]/', '', $setting->phone) }}"
-                style="text-decoration: none;">{{ $setting->phone }}</a>
-            <a href="mailto:{{ $page->email }}" class="email" style="text-decoration: none;">{{ $page->email }}</a>
-            <a href="#sixth" class="fullbutton" style="text-decoration: none; flex-grow: 1; justify-items: end;">
+            <a class="phone_number"
+                href="tel:{{ preg_replace('/[\s\(\)\-]/', '', $setting->phone) }}">{{ $setting->phone }}</a>
+            <a href="mailto:{{ $page->email }}" class="email">{{ $page->email }}</a>
+            <a href="#sixth" class="fullbutton">
                 <div class="header_button">Оставить заявку на консультацию</div>
             </a>
-            <a class="litebutton" style="text-decoration: none; flex-grow: 1; justify-items: end;">
+            <a class="litebutton">
             </a>
             <!-- </div> -->
             <div class="burger_menu">
@@ -26,27 +26,39 @@
         </div>
         <div class="header_main">
             <ul class="burger_menu_list">
-                <li class="burger_menu_li"><a class="burger_link" style="text-decoration: none; color: inherit;"
-                        href="#catalog">Каталог</a></li>
-                <li class="burger_menu_li"><a class="burger_link" style="text-decoration: none; color: inherit;"
-                        href="#first">Серия «Авангард. Гибкая черепица»</a></li>
-                <li class="burger_menu_li"><a class="burger_link" style="text-decoration: none; color: inherit;"
-                        href="#third">Дополнительные опции</a></li>
-                <li class="burger_menu_li"><a class="burger_link" style="text-decoration: none; color: inherit;"
-                        href="#fourth">Дешёвые хозблоки</a></li>
-                <li class="burger_menu_li"><a class="burger_link" style="text-decoration: none; color: inherit;"
-                        href="#mes">Отзывы</a></li>
-                <li class="burger_menu_li"><a class="burger_link" style="text-decoration: none; color: inherit;"
-                        href="#fivth">Как купить?</a></li>
-                <li class="burger_menu_li"><a class="burger_link"
-                        style="text-decoration: none; color: inherit; flex-grow:1" href="#sixth">Где мы находимся</br>и
-                        где можно посмотреть?</a></li>
-                <li class="burger_menu_li"><a class="burger_link" style="text-decoration: none; color: inherit;"
-                        href="#seven">На что ставить хозблок?</a></li>
-                <li class="burger_menu_li"><a class="burger_link" style="text-decoration: none; color: inherit;"
-                        href="#our_works">Наши работы</a></li>
-                <li class="burger_menu_li"><a class="burger_link" style="text-decoration: none; color: inherit;"
-                        href="#eight">Часто задаваемые вопросы</a></li>
+                <li class="burger_menu_li">
+                    <a class="burger_link" href="#catalog">Каталог</a>
+                </li>
+                <li class="burger_menu_li">
+                    <a class="burger_link" href="#first">Серия «Авангард. Гибкая черепица»</a>
+                </li>
+                <li class="burger_menu_li">
+                    <a class="burger_link" href="#third">Дополнительные опции</a>
+                </li>
+                <li class="burger_menu_li">
+                    <a class="burger_link" href="#fourth">Дешёвые хозблоки</a>
+                </li>
+                <li class="burger_menu_li">
+                    <a class="burger_link" href="#mes">Отзывы</a>
+                </li>
+                <li class="burger_menu_li">
+                    <a class="burger_link" href="#fivth">Как купить?</a>
+                </li>
+                <li class="burger_menu_li">
+                    <a class="burger_link" style="text-decoration: none; color: inherit; flex-grow:1" href="#sixth">Где
+                        мы находимся</br>и
+                        где можно посмотреть?</a>
+                </li>
+                <li class="burger_menu_li">
+                    <a class="burger_link" href="#seven">На что ставить хозблок?</a>
+                </li>
+                <li class="burger_menu_li">
+                    <a class="burger_link" href="#our_works">Наши работы</a>
+                </li>
+                <li class="burger_menu_li">
+                    <a class="burger_link" href="#eight">Часто
+                        задаваемые вопросы</a>
+                </li>
                 <div class="burger_contacts">
                     <div class="burger_contacts_content">
                         <div class="burger_contacts_row">
