@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin\Main;
 
 use App\Http\Controllers\Controller;
+use App\Models\Main\Description;
 use App\Models\Main\Page;
 use Illuminate\Http\Request;
 
@@ -42,6 +43,9 @@ class PageController extends Controller
 
         $object = $id ? Page::find($id) : new Page();
 
+        $description = Description::query()
+            ->findOrNew(1);
+
         if (!empty($request->object_id))
             $object = Page::query()->find($request->object_id);
 
@@ -72,7 +76,9 @@ class PageController extends Controller
                 'block_3_1_text',
                 'block_3_1_image_path',
                 'block_4_title',
+                'block_4_upper_text',
                 'block_4_text',
+                'block_4_1_text',
                 'block_4_image1_path',
                 'block_4_image1_description',
                 'block_4_image2_path',
@@ -84,6 +90,18 @@ class PageController extends Controller
             $object->block_1_price_value = floatval(preg_replace("/\s/", "", $request->block_1_price_value));
 
             $object->save();
+
+            $description->fill([
+                'block_1_0_text' => $request->block_3_1_0_text,
+                'block_2_0_text' => $request->block_3_2_0_text,
+                'block_3_0_text' => $request->block_3_3_0_text,
+                'block_4_0_text' => $request->block_3_4_0_text,
+                'block_5_0_text' => $request->block_3_5_0_text,
+                'block_6_0_text' => $request->block_3_6_0_text,
+                'block_7_0_text' => $request->block_3_7_0_text,
+                'block_8_0_text' => $request->block_3_8_0_text,
+                'block_9_0_text' => $request->block_3_9_0_text,
+            ])->save();
 
             // AdminEventLogs::log($object, $id);
 
@@ -97,6 +115,7 @@ class PageController extends Controller
         return view('admin.modules.' . $this->PATH . '.edit', compact(
             'object',
             'path',
+            'description',
             'title',
         ));
     }

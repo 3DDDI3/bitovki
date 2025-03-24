@@ -9,7 +9,7 @@
                     <img src="{{ asset('images/B.png') }}" class="back_B">
                 </div>
                 <div class="container">
-                    <div class="first_block_header">
+                    {{-- <div class="first_block_header">
                         <div class="first_block_text">
                             <div class="first_block_main_text">{!! $page->block_2_title !!}</div>
                             <div class="first_block_under_text">{{ $page->block_2_subtitle }}</div>
@@ -17,15 +17,15 @@
                         <img src="{{ asset('media/' . $page->block_2_image_path) }}" class="first_block_img">
                         <div class="first_block_btn">{{ $page->block_2_image_description }}</div>
                         <div class="line"></div>
-                    </div>
+                    </div> --}}
                     <div class="first_block_main">
                         @if (!empty($page->block_2_text1) || !empty($page->block_2_text2))
                             <div class="first_block_left">
-                                {!! $page->block_2_text1 !!}
-                            </div>
-                            <div class="first_block_right">
                                 {!! $page->block_2_text2 !!}
                             </div>
+                            {{-- <div class="first_block_right">
+                                {!! $page->block_2_text1 !!}
+                            </div> --}}
                         @endif
                     </div>
                     <div class="first_block_main-1">
@@ -35,7 +35,145 @@
                 </div>
             </div>
         </div>
-        <div class="container">
+        <div class="description-block" id="second">
+            {{-- <div class="letters_second">
+                <img src="{{ asset('images/D.png') }}" class="back_D_right">
+                <img src="{{ asset('images/B.png') }}" class="back_B_right">
+            </div> --}}
+            <div class="container">
+                <div class="container-header">
+                    Применяемые материалы:
+                </div>
+                <div class="description">
+                    <div class="description-left-column">
+                        <div class="desciption-images">
+                            @if (!empty($description->block_1_1_image_path))
+                                <img class="last_img" src="{{ asset('media/' . $description->block_1_1_image_path) }}"
+                                    alt="">
+                            @endif
+                            @if (!empty($description->block_1_2_image_path))
+                                <img class="last_img" src="{{ asset('media/' . $description->block_1_2_image_path) }}"
+                                    alt="">
+                            @endif
+                        </div>
+                    </div>
+                    <div class="description-right-column">
+                        {!! $description->block_1_0_text !!}
+                    </div>
+                </div>
+                <div class="description description_alt">
+                    <div class="description-left-column">
+                        <div class="desciption-images desciption-images_alt">
+                            <img class="last_img" src="{{ asset('media/' . $description->block_2_1_image_path) }}"
+                                alt="">
+                            <img class="last_img" src="{{ asset('media/' . $description->block_2_2_image_path) }}"
+                                alt="">
+                            <img class="last_img" src="{{ asset('media/' . $description->block_2_3_image_path) }}"
+                                alt="">
+                        </div>
+                    </div>
+                    <div class="description-right-column">
+                        {!! $description->block_2_0_text !!}
+                    </div>
+                </div>
+                <div class="description">
+                    <div class="description-left-column">
+                        <div class="desciption-images">
+                            @if (!empty($description->block_3_1_image_path))
+                                <img class="last_img" src="{{ asset('media/' . $description->block_3_1_image_path) }}"
+                                    alt="">
+                            @endif
+                        </div>
+                    </div>
+                    <div class="description-right-column">
+                        {!! $description->block_3_0_text !!}
+                    </div>
+                </div>
+                <div class="description description_alt">
+                    <div class="description-left-column">
+                        <div class="desciption-images desciption-images_alt">
+                            @if (!empty($description->block_4_1_image_path))
+                                <img class="last_img" src="{{ asset('media/' . $description->block_4_1_image_path) }}"
+                                    alt="">
+                            @endif
+                        </div>
+                    </div>
+                    <div class="description-right-column">
+                        {!! $description->block_4_0_text !!}
+                    </div>
+                </div>
+                <div class="description">
+                    <div class="description-left-column">
+                        <div class="desciption-images">
+                            @if (!empty($description->block_5_1_image_path))
+                                <img class="last_img" src="{{ asset('media/' . $description->block_5_1_image_path) }}"
+                                    alt="">
+                            @endif
+                        </div>
+                    </div>
+                    <div class="description-right-column">
+                        {!! $description->block_5_0_text !!}
+                    </div>
+                </div>
+                <div class="description description_alt">
+                    <div class="description-left-column">
+                        <div class="desciption-images desciption-images_alt">
+                            @if (!empty($description->block_6_1_image_path))
+                                <img class="last_img" src="{{ asset('media/' . $description->block_6_1_image_path) }}"
+                                    alt="">
+                            @endif
+                            @if (!empty($description->block_6_2_image_path))
+                                <img class="last_img" src="{{ asset('media/' . $description->block_6_2_image_path) }}"
+                                    alt="">
+                            @endif
+                        </div>
+                    </div>
+                    <div class="description-right-column">
+                        {!! $description->block_6_0_text !!}
+                    </div>
+                </div>
+                <div class="description">
+                    <div class="description-left-column">
+                        <div class="desciption-images">
+                            @if (!empty($description->block_7_1_image_path))
+                                <img class="last_img" src="{{ asset('media/' . $description->block_7_1_image_path) }}"
+                                    alt="">
+                            @endif
+                        </div>
+                    </div>
+                    <div class="description-right-column">
+                        {!! $description->block_7_0_text !!}
+                    </div>
+                </div>
+                <div class="description description_alt">
+                    <div class="description-left-column">
+                        <div class="desciption-images desciption-images_alt">
+                            @if (!empty($description->block_8_1_image_path))
+                                <img class="last_img" src="{{ asset('media/' . $description->block_8_1_image_path) }}"
+                                    alt="">
+                            @endif
+                        </div>
+                    </div>
+                    <div class="description-right-column">
+                        {!! $description->block_8_0_text !!}
+                    </div>
+                </div>
+                <div class="description">
+                    <div class="description-left-column">
+                        <div class="desciption-images">
+                            @if (!empty($description->block_9_1_image_path))
+                                <img class="last_img" src="{{ asset('media/' . $description->block_9_1_image_path) }}"
+                                    alt="">
+                            @endif
+                        </div>
+                    </div>
+                    <div class="description-right-column">
+                        {!! $description->block_9_0_text !!}
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{-- <div class="container">
             <div class="first_block_header">
                 <div class="first_block_text">
                     <div class="first_block_main_text first_block_main_text_alt">{!! $page->block_5_title !!}</div>
@@ -44,7 +182,7 @@
             <div class="first_block_main first_block_main_alt">
                 {!! $page->block_5_text !!}
             </div>
-        </div>
+        </div> --}}
         <div class="catalog" id="catalog">
             <div class="container">
                 <div class="catalog_title">Каталог</div>
@@ -146,7 +284,10 @@
                 </style>
                 @foreach ($additionalOptions as $additionalOption)
                     <div class="third_block_option">
-                        <img src="{{ asset('media/' . $additionalOption->image_path) }}" class="third_block_option_img">
+                        @if (!empty($additionalOption->image_path))
+                            <img src="{{ asset('media/' . $additionalOption->image_path) }}"
+                                class="third_block_option_img">
+                        @endif
                         <div class="third_block_text">
                             <div class="third_block_option_text">
                                 {!! $additionalOption->text !!}
@@ -162,6 +303,9 @@
                 <img src="{{ asset('images/B.png') }}" class="back_B">
             </div>
             <div class="container_mini">
+                <div class="fourth_block_text">
+                    {!! $page->block_4_upper_text !!}
+                </div>
                 <div class="fourth_block_title">{!! $page->block_4_title !!}</div>
                 <div class="fourth_block_text">
                     {!! $page->block_4_text !!}
@@ -175,6 +319,9 @@
                         <img src="{{ asset('media/' . $page->block_4_image2_path) }}" class="fourth_block_photo">
                         <div class="our_block_text">{{ $page->block_4_image2_description }}</div>
                     </div>
+                </div>
+                <div class="fourth_block_text">
+                    {!! $page->block_4_1_text !!}
                 </div>
             </div>
             <div class="container" id="mes">

@@ -38,6 +38,8 @@ class Page extends Model
         'block_3_1_image_path',
         'block_4_title',
         'block_4_text',
+        'block_4_1_text',
+        'block_4_upper_text',
         'block_4_image1_path',
         'block_4_image1_description',
         'block_4_image2_path',

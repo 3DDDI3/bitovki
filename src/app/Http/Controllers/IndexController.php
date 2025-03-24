@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Main\AdditionalOption;
+use App\Models\Main\Description;
 use App\Models\Main\Information;
 use App\Models\Main\Item;
 use App\Models\Main\OurWork;
@@ -58,6 +59,8 @@ class IndexController extends Controller
 
         $setting = Setting::query()->find(1);
 
+        $description = Description::query()->find(1);
+
         return view('pages.index', [
             'page' => $page,
             'additionalOptions' => $additionalOptions,
@@ -68,6 +71,7 @@ class IndexController extends Controller
             'qa' => $qa,
             'items' => $items,
             'setting' => $setting,
+            'description' => $description,
         ]);
     }
 }

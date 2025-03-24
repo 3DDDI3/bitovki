@@ -46,27 +46,29 @@ $(document).ready(function () {
             onPaste: function (e) {
                 var bufferHTML = (e.originalEvent || e).clipboardData.getData('text/html');
 
-                var cleanHTML = DOMPurify.sanitize(bufferHTML, {
-                    ALLOWED_TAGS: ['p', 'b', 'i', 'u', 'a', 'ul', 'ol', 'li'], // Разрешенные теги
-                    ALLOWED_ATTR: ['href', 'target'] // Разрешенные атрибуты
-                });
+                if (bufferHTML != "") {
+                    var cleanHTML = DOMPurify.sanitize(bufferHTML, {
+                        ALLOWED_TAGS: ['p', 'b', 'i', 'u', 'a', 'ul', 'ol', 'li'], // Разрешенные теги
+                        ALLOWED_ATTR: ['href', 'target'] // Разрешенные атрибуты
+                    });
 
-                // var tempDiv = document.createElement('div');
-                // tempDiv.innerHTML = cleanHTML;
+                    // var tempDiv = document.createElement('div');
+                    // tempDiv.innerHTML = cleanHTML;
 
-                // tempDiv.querySelectorAll('ul').forEach(function (ul) {
-                //     ul.classList.add('custom-ul');
-                // });
-                // tempDiv.querySelectorAll('li').forEach(function (li) {
-                //     li.classList.add('custom-li');
-                // });
+                    // tempDiv.querySelectorAll('ul').forEach(function (ul) {
+                    //     ul.classList.add('custom-ul');
+                    // });
+                    // tempDiv.querySelectorAll('li').forEach(function (li) {
+                    //     li.classList.add('custom-li');
+                    // });
 
-                // var updatedHTML = tempDiv.innerHTML;
+                    // var updatedHTML = tempDiv.innerHTML;
 
-                // console.log(cleanHTML.replace(/^\<.\>&nbsp;|&nbsp;\<\/.\>$/g, ''));
+                    // console.log(cleanHTML.replace(/^\<.\>&nbsp;|&nbsp;\<\/.\>$/g, ''));
 
-
-                let updatedHTML = cleanHTML.trim();
+                    updatedHTML = cleanHTML.trim();
+                } else
+                    updatedHTML = (e.originalEvent || e).clipboardData.getData('text/plain');
 
                 e.preventDefault();
                 document.execCommand('insertHTML', false, updatedHTML);
