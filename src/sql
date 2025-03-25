@@ -1,3 +1,0 @@
-INSERT INTO `admin_access_rights` (`id`, `path`, `type`, `user_class_id`, `created_at`, `updated_at`) VALUES (NULL, 'main.pages', 'read', '1', NULL, NULL);
-INSERT INTO `admin_access_rights` (`id`, `path`, `type`, `user_class_id`, `created_at`, `updated_at`) VALUES (NULL, 'main.pages', 'edit', '1', NULL, NULL);
-INSERT INTO `admin_access_rights` (`id`, `path`, `type`, `user_class_id`, `created_at`, `updated_at`) VALUES (NULL, 'main.pages', 'delete', '1', NULL, NULL);

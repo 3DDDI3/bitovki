@@ -15,6 +15,7 @@ export default defineConfig({
         },
         hmr: {
             host: "butovki.spacetm.ru",
+            // host: "localhost",
         },
     },
     optimizeDeps: {
